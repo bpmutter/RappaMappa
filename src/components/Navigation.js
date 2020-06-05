@@ -10,7 +10,6 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Fade from "@material-ui/core/Fade";
 import SearchIcon from "@material-ui/icons/Search";
-import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
