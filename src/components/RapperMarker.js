@@ -1,29 +1,43 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Marker} from 'react-google-maps';
-// import InfoBox from "react-google-maps/lib/components/addons/InfoBox";
-import RapperInfoBox from './RapperInfoBox'
+import {connect} from 'react-redux';
+import {setActiveRapper} from '../store/rappers';
 
 const RapperMarker = (props) => {
   const [lat, lng] = props.fields.location_coordinates;
-  const [showInfoBox, setShowInfoBox] = useState(false);
-  const toggleInfoBox = () =>{
-    setShowInfoBox(!showInfoBox);
+
+  const activateThisRapper = () =>{
+    props.setActiveRapper(props.recordid);
+
   }
-  debugger;
+
   return (
-    <Marker 
-      position={{ lat, lng }} 
-      onClick={toggleInfoBox}
-      icon={{
-        url:"/img/map-icon.png",
-        scaledSize: new window.google.maps.Size(40,40)
-      }}
-      zIndex={12}
-    >
-      {showInfoBox && <RapperInfoBox {...props} toggleInfoBox={toggleInfoBox}/>}      
-    </Marker>
+    <>
+      <Marker
+        position={{ lat, lng }}
+        onClick={activateThisRapper}
+        icon={{
+          url: "/img/map-icon.png",
+          scaledSize: new window.google.maps.Size(40, 40),
+        }}
+        zIndex={12}
+      >
+      </Marker>
+    </>
   );
 }
 
-export default RapperMarker
+const mapStateToProps = (state) => {
+  return {
+    // activeRapper: state.rappers.activeRapper
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setActiveRapper: (recordid) => dispatch(setActiveRapper(recordid)),
+    // noActiveRapper: ()=> dispatch(noActiveRapper())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RapperMarker);
 

@@ -1,23 +1,43 @@
 import React from 'react';
 import Navigation from './components/Navigation';
 import Map from './components/Map';
-import {BrowserRouter as Router} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
 import {googleMapsAPIKey} from './config';
-
+import RapperPage from './components/RapperPage';
+import NoMatch from './components/NoMatch';
 
 function App() {
   return (
     <React.StrictMode>
       <Router>
         <Navigation />
-        <Map
-          isMarkerShown
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${googleMapsAPIKey}&v=3.exp&libraries=geometry,drawing,places`}
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `90.5%`, width:'100%', position:'absolute' }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        />
+        <Switch>
+          <Route path="/" exact>
+            <Map
+              isMarkerShown
+              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${googleMapsAPIKey}&v=3.exp&libraries=geometry,drawing,places`}
+              loadingElement={<div style={{ height: `100%` }} />}
+              containerElement={
+                <div
+                  style={{
+                    height: `90.5%`,
+                    width: "100%",
+                    position: "absolute",
+                  }}
+                />
+              }
+              mapElement={<div style={{ height: `100%` }} />}
+            />
+          </Route>
+          <Route path="/rappers/:id">
+            <RapperPage />
+          </Route>
+          {/* 404 PAGE */}
+          <Route path="*">
+            <NoMatch />
+          </Route>
+        </Switch>
       </Router>
     </React.StrictMode>
   );

@@ -6,7 +6,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import InfoBox from "react-google-maps/lib/components/addons/InfoBox";
-
+import { noActiveRapper } from "../store/rappers";
+import {connect} from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
@@ -69,16 +70,29 @@ function RapperCard(props) {
 }
 
 const RapperInfoBox = (props) => {
-
+  debugger;
     return (
       <InfoBox
-        onCloseClick={props.toggleInfoBox}
-        options={{ closeBoxURL: ``, enableEventPropagation: true }}
+        onCloseClick={props.removeActiveStatus}
+        // options={
+        //   { closeBoxURL: ``, enableEventPropagation: true }
+        //   }
       >
         <RapperCard {...props} />
       </InfoBox>
     );
 }
 
-export default RapperInfoBox;
+const mapStateToProps = (state) => {
+  return {
+
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeActiveStatus: () => dispatch(noActiveRapper()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RapperInfoBox);
 
