@@ -10,6 +10,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Fade from "@material-ui/core/Fade";
 import SearchIcon from "@material-ui/icons/Search";
+import SearchBox from "./SearchBox";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -117,17 +118,18 @@ export default function SearchAppBar({}) {
             RappaMappa
           </Typography>
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
+            {/* <div className={classes.searchIcon}>
               <SearchIcon />
-            </div>
-            <InputBase
+            </div> */}
+            <SearchBox classes={classes}/>
+            {/* <InputBase
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
-            />
+            /> */}
           </div>
         </Toolbar>
       </AppBar>

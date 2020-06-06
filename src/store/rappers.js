@@ -27,7 +27,6 @@ export const noActiveRapper = () => async dispatch =>{
 
 export default function reducer(state = {}, action) {
   Object.freeze(state);
-  console.log("SHOW ACTION", action)
   switch(action.type){
       case LOAD_ALL: {
           return {
