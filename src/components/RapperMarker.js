@@ -29,7 +29,6 @@ const RapperMarker = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    // activeRapper: state.rappers.activeRapper
   };
 };
 const mapDispatchToProps = (dispatch) => {

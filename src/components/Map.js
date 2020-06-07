@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import theme from '../assets/style/mapTheme';
 import RapperMarker from './RapperMarker';
@@ -12,44 +12,51 @@ const Map = withScriptjs(withGoogleMap((props) => {
     useEffect(()=>{
         props.getRappers()
     }, []);
-    if(props.activeRapper){
-    console.log("lat:", props.activeRapper.fields.location_coordinates[0])
-    console.log("lng:", props.activeRapper.fields.location_coordinates[1]);}
+
     return (
-      <GoogleMap
+    <GoogleMap
         defaultZoom={11}
-        defaultCenter={{ lat: 40.8448, lng: -73.8648 }}
+        center={props.focusLocation}
         defaultOptions={{ styles: theme }}
-      >
+    >
         {rapperList.map((rapper) => {
-          return <RapperMarker {...rapper} key={rapper.recordid} />;
+        return <RapperMarker {...rapper} key={rapper.recordid} />;
         })}
         {props.activeRapper && (
-          //NOTE: Added hidden Marker with InfoBox to force it to occur in correct location dynamically
-          // seems to be some problem with API, not allowing dynamic positioning of Infobox  
-          //also had to add icon of no size Marker to force nothing to show up
-          <Marker
+        //NOTE: Added hidden Marker with InfoBox to force it to occur in correct location dynamically
+        // seems to be some problem with API, not allowing dynamic positioning of Infobox  
+        //also had to add icon of no size Marker to force nothing to show up
+        <Marker
             position={{
-              lat: props.activeRapper.fields.location_coordinates[0],
-              lng: props.activeRapper.fields.location_coordinates[1],
+            lat: props.activeRapper.fields.location_coordinates[0],
+            lng: props.activeRapper.fields.location_coordinates[1],
             }}
             icon={{
-              url: "/img/map-icon.png",
-              scaledSize: new window.google.maps.Size(0, 0),
+            url: "/img/map-icon.png",
+            scaledSize: new window.google.maps.Size(0, 0),
             }}
-          >
+        >
             <RapperInfoBox {...props.activeRapper} />
-          </Marker>
+        </Marker>
         )}
-      </GoogleMap>
-    );
+    </GoogleMap>
+    ); 
 })
 );
 
 const mapStateToProps = (state) => {
-  return {
-    rappers: state.rappers.activeRapper,
-    activeRapper: state.rappers.activeRapper,
+    //default location
+    let focusLocation = {
+      lat: 40.844,
+      lng: -73.8648,
+    };
+    if(state.rappers.refocusLocation){
+        focusLocation = state.rappers.refocusLocation;
+    }
+    return {
+        rappers: state.rappers.activeRapper,
+        activeRapper: state.rappers.activeRapper,
+        focusLocation
   };
 }
 const mapDispatchToProps = (dispatch) => {
