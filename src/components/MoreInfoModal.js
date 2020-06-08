@@ -35,7 +35,7 @@ export default function MoreInfoModal() {
   return (
     <div>
       <Button size="small" onClick={handleOpen}>
-        More
+        Music & More
       </Button>
 
       <Modal
@@ -63,15 +63,3 @@ export default function MoreInfoModal() {
   );
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     activeRapper: state.rappers.activeRapper
-//   };
-// };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     loadAdditionalInfo: (rapper) => dispatch(loadAdditionalInfo(rapper)),
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(MoreInfoModal);

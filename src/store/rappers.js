@@ -1,5 +1,6 @@
-import { baseUrl } from "../config";
+import keys from "../config";
 import rappers from "../assets/data/rapperData.json";
+const {spotifyAPIKey} = keys;
 
 const LOAD_ALL = "rappamappa/rappers/LOADALL";
 const SET_ACTIVE = "rappamappa/rappers/SET_ACTIVE";
@@ -19,9 +20,7 @@ export const getRappers = () => async dispatch =>{
 }
 export const setActiveRapper = (recordid) => async (dispatch, getState) =>{
     const {rappers: {rappers} } = getState();
-    console.log("RECORD ID", recordid);
     const rapper = rappers.find((rapper) => rapper.recordid === recordid);
-    console.log("RAPPER", rapper);
     dispatch(activate(rapper));
 }
 export const noActiveRapper = () => async dispatch =>{
@@ -35,9 +34,24 @@ export const setSearchActive = queryName => async (dispatch, getState) =>{
 }
 
 export const loadAdditionalInfo = rapper => async dispatch => {
-
+    const name = rapper.fields.name;
     //TODO fetch data for external DB, like spotify
-    dispatch(additionalInfo(rapper))
+    try{
+        console.log("ACCESS TOKEN", spotifyAPIKey)
+        const data = await fetch(
+          `https://api.spotify.com/v1/search?q=${name}&type=artist&limit=1&offset=0`,
+          {
+            headers: new Headers({
+              Authorization: `Bearer BQDRf_1SRkvHroH2VMHf-h4XOO0p9Xg0ga0cpm-kILukGlWHhAaXUhtyjdhVnulcNdrpkz9EJZSpdHm41fwTDjKKDDuXe62R2WOScBqwo6yf3iKgKTBD4pYs-QJQKijzDzVHUiv8oSqizpdEDjxWLIs`,
+            }),
+          }
+        );
+        const json = await data.json();
+        const artistInfo = json.artists.items[0];
+        rapper.additionalInfo = artistInfo;
+        dispatch(additionalInfo(rapper));
+    } catch(err) { console.error("OH SNAP", err)}
+    
 }
 
 export default function reducer(state = {}, action) {
@@ -61,7 +75,6 @@ export default function reducer(state = {}, action) {
           newState.activeRapper = null;
           return newState
       } case SET_SEARCH_ACTIVE: {
-          console.log("SET SEARCH TO ACTIVE", action.rapper)
           const newState = {...state};
           newState.activeRapper = action.rapper;
           newState.refocusLocation = {
@@ -72,6 +85,7 @@ export default function reducer(state = {}, action) {
       } case LOAD_ADDITIONAL_INFO: {
         const newState = {...state}
         newState.activeRapper = action.rapper;
+        console.log(newState.activeRapper.additionalInfo)
         return newState;
       } default: return state;
   }

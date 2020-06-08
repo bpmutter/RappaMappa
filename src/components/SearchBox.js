@@ -15,7 +15,6 @@ function ComboBox(props) {
         e.preventDefault();
         const query = document.getElementsByName("search-query")[0].value;
         if(rapperNames.includes(query)){
-            console.log("do stuff"); //TODO: add 
             props.search(query);
         } 
         else{
