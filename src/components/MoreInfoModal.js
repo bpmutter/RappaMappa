@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
     border: 'none',
     maxWidth: 400,
+    
     display: 'block',
   },
   avatar: {

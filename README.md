@@ -14,22 +14,23 @@
   - [x] focus location
 - [x] searchbox that updates active rapper in state and redirects view to correct location
 - [ ] More information modal (half day)
-  - [ ] Create and style modal
-  - [ ] All information from DB 
-  - [ ] Bring in additional data from spotify API
+  - [x] Create modal
+  - [ ] add custom styles and populate info
+  - [x] All information from DB 
+  - [x] Bring in additional data from spotify API
 - [x] 404 Page (1 hour remaining)
   - [x] create/render routes correctly
   - [x] make content
-- [ ] About Page (1 hour)
-  - [ ] basic project information
-  - [ ] contact info and github
-  - [ ] styling
+- [x] About Page (1 hour)
+  - [x] basic project information
+  - [x] contact info and github
+  - [x] styling
 - [ ] Error handling (1.5 hours)
   - [ ] when search result not in DB 
-  - [ ] when problem with Spotify API
+  - [x] when problem with Spotify API
 - [ ] Add loading screens for components (time indeterminate)
-- [ ] Backend (at least half day)
-  - [ ] create basic database to store rapper info (GraphQL?)
+- [ ] Backend (full day)
+  - [ ] create basic database to store rapper info - Mongo DB
   - [ ] create restful route to serve to the redux store
 - [ ] Mobile optimization (half day)
   - [ ] map size
