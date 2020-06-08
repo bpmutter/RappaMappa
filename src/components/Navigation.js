@@ -3,14 +3,15 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
+// import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Fade from "@material-ui/core/Fade";
-import SearchIcon from "@material-ui/icons/Search";
 import SearchBox from "./SearchBox";
+import {Link} from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,9 +66,13 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  clearStyles: {
+    color: "inherit",
+    textDecoration: "inherit"
+  }
 }));
 
-export default function SearchAppBar({}) {
+export default function SearchAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -85,9 +90,13 @@ export default function SearchAppBar({}) {
     window.open("https://github.com/bpmutter/RappaMappa", "_blank");
     handleClose();
   }
+  const goToAbout = (e) => {
+    // e.preventDefault();
+    handleClose();
+  }
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ zIndex: 10 }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -108,11 +117,9 @@ export default function SearchAppBar({}) {
             onClose={handleClose}
             TransitionComponent={Fade}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={goToGithub}>
-              Github
-            </MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to={"/"}>Home</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to={'/about'}>About</MenuItem>
+            <MenuItem onClick={goToGithub}>Github</MenuItem>   
           </Menu>
           <Typography className={classes.title} variant="h6" noWrap>
             RappaMappa
@@ -121,7 +128,7 @@ export default function SearchAppBar({}) {
             {/* <div className={classes.searchIcon}>
               <SearchIcon />
             </div> */}
-            <SearchBox classes={classes}/>
+            <SearchBox classes={classes} />
             {/* <InputBase
               placeholder="Search…"
               classes={{

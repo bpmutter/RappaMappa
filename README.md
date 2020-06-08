@@ -17,9 +17,9 @@
   - [ ] Create and style modal
   - [ ] All information from DB 
   - [ ] Bring in additional data from spotify API
-- [ ] 404 Page (1 hour remaining)
+- [x] 404 Page (1 hour remaining)
   - [x] create/render routes correctly
-  - [ ] make content
+  - [x] make content
 - [ ] About Page (1 hour)
   - [ ] basic project information
   - [ ] contact info and github

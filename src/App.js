@@ -5,8 +5,10 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
 import {googleMapsAPIKey} from './config';
 import RapperPage from './components/RapperPage';
+import AboutPage from './components/AboutPage';
 import NoMatch from './components/NoMatch';
 
+ 
 function App() {
   return (
     <React.StrictMode>
@@ -29,6 +31,9 @@ function App() {
               }
               mapElement={<div style={{ height: `100%` }} />}
             />
+          </Route>
+          <Route path="/about">
+            <AboutPage />
           </Route>
           <Route path="/rappers/:id">
             <RapperPage />
