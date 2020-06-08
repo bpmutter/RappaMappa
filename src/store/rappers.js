@@ -42,7 +42,7 @@ export const loadAdditionalInfo = rapper => async dispatch => {
           `https://api.spotify.com/v1/search?q=${name}&type=artist&limit=1&offset=0`,
           {
             headers: new Headers({
-              Authorization: `Bearer BQDRf_1SRkvHroH2VMHf-h4XOO0p9Xg0ga0cpm-kILukGlWHhAaXUhtyjdhVnulcNdrpkz9EJZSpdHm41fwTDjKKDDuXe62R2WOScBqwo6yf3iKgKTBD4pYs-QJQKijzDzVHUiv8oSqizpdEDjxWLIs`,
+              Authorization: `Bearer BQAg77pWU31hQ-vgqIb3Hejr7neCvrVw303xqP2cWYTTOTFQDZrDe01le6Tu2XxgaZwMajbsdFEsIcFYDOFiEaCDUgnPMLrWGIJkb7xOwSlx98ZhW-zd1FF6zPH8nUQRL9nRvebTqcFmCR68XoZ37Rk`,
             }),
           }
         );

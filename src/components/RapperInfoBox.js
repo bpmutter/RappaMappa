@@ -35,7 +35,6 @@ function RapperCard(props) {
   useEffect( ()=>{
       (async () => {
         await props.loadAdditionalInfo(props.activeRapper)
-        console.log("IN APP INFO", props.activeRapper.additionalInfo);
       })();
 
   })
@@ -53,10 +52,12 @@ function RapperCard(props) {
             p: { display: "inline-block" },
           }}
         >
+          <span>
             <b>Origins: </b>
             {props.fields.location_neighborhood
               ? `${props.fields.location_neighborhood}, ${props.fields.location_city}`
               : `${props.fields.location_city}`}
+          </span>
           <CloseCardButton
             style={{ height: 60, paddingRight: 10, cursor: "pointer" }}
             closeInfoBox={props.removeActiveStatus}
@@ -67,8 +68,8 @@ function RapperCard(props) {
         </Typography>
         {props.fields.bio_yearsactivestart ? (
           <Typography className={classes.pos} color="textSecondary">
-              <b>Active since: </b>
-              {props.fields.bio_yearsactivestart}
+            <b>Active since: </b>
+            {props.fields.bio_yearsactivestart}
           </Typography>
         ) : null}
         <Typography variant="body2" component="p">

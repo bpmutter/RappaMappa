@@ -41,15 +41,11 @@ export default function AboutPage() {
     <Paper component="main" maxWidth="m" style={{margin: "0 2rem", padding: "0 .75rem"}}>
       <CssBaseline />
       <div className={classes.paper}>
-        {/* <section className="about__header"> */}
           <Avatar className={classes.avatar} src="/img/rappa-mappa-logo.png">
-            {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5" className={classes.title}>
             About RappaMappa
           </Typography>
-        {/* </section> */}
-        {/* <section className="about__body" style={{maxWidth: 600, display: "block"}}> */}
           <Typography component="p" variant="body1" align="left" className={classes.p}>
             The title pretty much says it all. RappaMappa is an interactive map of rappers. 
             You can browse around the map, search for rappers, and see some details about the artists. 
