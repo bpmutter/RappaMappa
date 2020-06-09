@@ -3,33 +3,51 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Avatar from "@material-ui/core/Avatar";
-
-
+import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    zIndex: 5,
+    outline: 'none',
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    border: 'none',
     maxWidth: 400,
-    
-    display: 'block',
+    outline: 'none',
+    margin: 15,
+    display: "flex",
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+
   },
   avatar: {
-    margin: '0 auto',
+    margin: "0 auto",
     alignSelf: "center",
     borderRadius: "3em",
-    width: 160
+    width: 160,
+    marginBottom: '1rem',
   },
+  originWrapper: {
+    margin: '.5rem 0 1rem'
+  },
+  originField: {
+    paddingRight: '1rem',
+  },
+  mainInfoField: {
+    marginBottom: '.5rem'
+  },
+  playButton: {
+    alignSelf: 'center'
+  }
 }));
 
 export default function MoreInfoModal(props) {
@@ -43,8 +61,28 @@ export default function MoreInfoModal(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log("RAPPER MODAL", props.rapper)
+  const spotifyRedirectHandler = (e) => {
+    //TODO
+    e.preventDefault();
+    if(props.rapper && props.rapper.additionalInfo){
+      window.open(props.rapper.additionalInfo.external_urls.spotify, "_blank");
+    }
+  }
+  console.log("RAPPER MODAL", props.rapper);
 
+  let subgenres = "";
+  if(props.rapper && props.rapper.additionalInfo){
+    subgenres = props.rapper.additionalInfo.genres.join(", ");
+  }
+  let popularity = "";
+  if(props.rapper && props.rapper.additionalInfo){
+    const popularityScore = props.rapper.additionalInfo.popularity;
+    if(popularityScore >= 90) popularity = "🔥🔥🔥🔥🔥";
+    else if(popularityScore >= 80) popularity = "🔥🔥🔥🔥";
+    else if(popularityScore >= 65) popularity = "🔥🔥🔥";
+    else if(popularityScore >= 40) popularity = "🔥🔥";
+    if(popularityScore < 40 ) popularity = "🔥";
+  }
   return (
     <div>
       <Button size="small" onClick={handleOpen}>
@@ -58,13 +96,14 @@ export default function MoreInfoModal(props) {
         open={open}
         onClose={handleClose}
         closeAfterTransition
+        disableAutoFocus={true}
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={open}>
-          <div className={classes.paper}>
+        <Fade in={open} disableAutoFocus={true}>
+          <Paper className={classes.paper} disableAutoFocus={true}>
             {!props.rapper.additionalInfo ? (
               <>
                 <h2 id="rapper-more-info">Aww snap!</h2>
@@ -83,31 +122,67 @@ export default function MoreInfoModal(props) {
                 <Typography component="h2" variant="h4">
                   {props.rapper.fields.name}
                 </Typography>
-                <Typography
-                  className={classes.title}
-                  color="textSecondary"
-                  gutterBottom
+                <Box
+                  className={classes.originWrapper}
+                  display="flex"
+                  flexDirection="row"
+                  flexWrap="wrap"
+                  justifyContent="space-between"
                 >
-                  <b>Origins: </b>
-                  {props.rapper.fields.location_neighborhood
-                    ? `${props.rapper.fields.location_neighborhood}, ${props.rapper.fields.location_city}`
-                    : `${props.rapper.fields.location_city}`}
+                  <Box className={classes.originField}>
+                    <Typography color="textSecondary">
+                      <b>Origins: </b>
+                      {props.rapper.fields.location_neighborhood
+                        ? `${props.rapper.fields.location_neighborhood}, ${props.rapper.fields.location_city}`
+                        : `${props.rapper.fields.location_city}`}
+                    </Typography>
+                  </Box>
+                  <Box className={classes.originField}>
+                    {props.rapper.fields.bio_yearsactivestart ? (
+                      <Typography color="textSecondary">
+                        <b>Active since: </b>
+                        {props.rapper.fields.bio_yearsactivestart}
+                      </Typography>
+                    ) : null}
+                  </Box>
+                </Box>
+                <Typography
+                  variant="body1"
+                  component="p"
+                  className={classes.mainInfoField}
+                >
+                  <b>Bio: </b>
+                  {props.rapper.fields.bio_summary}
                 </Typography>
-                {props.rapper.fields.bio_yearsactivestart ? (
-                  <Typography className={classes.pos} color="textSecondary">
-                    <b>Active since: </b>
-                    {props.rapper.fields.bio_yearsactivestart}
+                {subgenres ? (
+                  <Typography
+                    variant="body1"
+                    component="p"
+                    className={classes.mainInfoField}
+                  >
+                    <b>Subgenres: </b>
+                    <span>{subgenres}</span>
                   </Typography>
                 ) : null}
-                <Typography variant="body2" component="p">
-                  <p>
-                    <b>Bio: </b>
-                    {props.rapper.fields.bio_summary}
-                  </p>
+
+                <Typography
+                  variant="body1"
+                  component="p"
+                  className={classes.mainInfoField}
+                >
+                  <b>Popularity: </b>
+                  <span>{popularity}</span>
                 </Typography>
+                <Button
+                  onClick={spotifyRedirectHandler}
+                  style={{ alignSelf: "center" }}
+                >
+                  <PlayCircleOutlineIcon />
+                  &nbsp; Listen on Spotify"
+                </Button>
               </>
             )}
-          </div>
+          </Paper>
         </Fade>
       </Modal>
     </div>

@@ -1,6 +1,8 @@
 import keys from "../config";
 import rappers from "../assets/data/rapperData.json";
-const {spotifyAPIKey} = keys;
+import axios from 'axios';
+import qs from 'qs';
+const {spotifyClientId, spotifyClientSecret} = keys;
 
 const LOAD_ALL = "rappamappa/rappers/LOADALL";
 const SET_ACTIVE = "rappamappa/rappers/SET_ACTIVE";
@@ -14,8 +16,24 @@ export const deactivate = () => ({type: SET_INACTIVE, rapper: null });
 export const activateSearchResult = rapper => ({type: SET_SEARCH_ACTIVE, rapper});
 export const additionalInfo = rapper => ({type: LOAD_ADDITIONAL_INFO, rapper})
 
+let spotifyAccessToken;
 // export const load = (pokemon) => ({ type: LOAD, pokemon });
 export const getRappers = () => async dispatch =>{
+
+    // const b64encodedAccountInfo = window.btoa(
+    //   `${spotifyClientId}:${spotifyClientSecret}`
+    // );
+    
+    // const data = await fetch("https://accounts.spotify.com/api/token", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     Authorization: `Basic ${b64encodedAccountInfo}`,
+    //   },
+    //   body: qs.stringify({ grant_type: "client_credentials" }),
+    // });
+    // const json = await data.json();
+    // console.log('ACCESS TOKEN::', json)
     dispatch(loadAll(rappers));
 }
 export const setActiveRapper = (recordid) => async (dispatch, getState) =>{
@@ -35,14 +53,14 @@ export const setSearchActive = queryName => async (dispatch, getState) =>{
 
 export const loadAdditionalInfo = rapper => async dispatch => {
     const name = rapper.fields.name;
-    //TODO fetch data for external DB, like spotify
     try{
-        console.log("ACCESS TOKEN", spotifyAPIKey)
+        const accessToken =
+          "BQB0GYirSHhnUiDBNIgHoyiBziASKVSjEnKrZ3QSzL2abErRPZ580L9LMA8gliJZujd2YPq3PG4malFX8As";
         const data = await fetch(
           `https://api.spotify.com/v1/search?q=${name}&type=artist&limit=1&offset=0`,
           {
             headers: new Headers({
-              Authorization: `Bearer BQAg77pWU31hQ-vgqIb3Hejr7neCvrVw303xqP2cWYTTOTFQDZrDe01le6Tu2XxgaZwMajbsdFEsIcFYDOFiEaCDUgnPMLrWGIJkb7xOwSlx98ZhW-zd1FF6zPH8nUQRL9nRvebTqcFmCR68XoZ37Rk`,
+              Authorization: `Bearer ${accessToken}`,
             }),
           }
         );

@@ -8,9 +8,8 @@ import RapperPage from './components/RapperPage';
 import AboutPage from './components/AboutPage';
 import NoMatch from './components/NoMatch';
 
-const {googleMapsAPIKey} = keys
+const {googleMapsAPIKey} = keys;
 
- 
 function App() {
   return (
     <React.StrictMode>

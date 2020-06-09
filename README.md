@@ -13,9 +13,9 @@
   - [x] active rapper
   - [x] focus location
 - [x] searchbox that updates active rapper in state and redirects view to correct location
-- [ ] More information modal (half day)
+- [x] More information modal (half day)
   - [x] Create modal
-  - [ ] add custom styles and populate info
+  - [x] add custom styles and populate info
   - [x] All information from DB 
   - [x] Bring in additional data from spotify API
 - [x] 404 Page (1 hour remaining)
@@ -28,18 +28,19 @@
 - [ ] Error handling (1.5 hours)
   - [ ] when search result not in DB 
   - [x] when problem with Spotify API
-- [ ] Add loading screens for components (time indeterminate)
-- [ ] Backend (full day)
-  - [ ] create basic database to store rapper info - Mongo DB
-  - [ ] create restful route to serve to the redux store
 - [ ] Mobile optimization (half day)
   - [ ] map size
   - [ ] search box
   - [ ] nav bar 
   - [ ] modals 
   - [ ] basic info popup
+- [ ] Backend (full day)
+  - [ ] create basic database to store rapper info - Mongo DB
+  - [ ] add spotify auth to backend (NOTE: already half done in frontend, but migrate back there)
+  - [ ] create restful route to serve to the redux store
+- [ ] Add loading screens for components (time indeterminate)
 - [ ] Deploy app (2+ hours)
-  - [ ] make sure API keys are secure
+  - [ ] make sure API keys are secure (spotify is trivial, google maps is ???)
   - [ ] separate backend and front end (probably)
 - [ ] Create project README (4 hours)
 
@@ -56,3 +57,5 @@
   - [ ] form where user can add rapper
     - [ ] MUST include coordinates via Google Maps API
   - [ ] backend updates data with new rapper (pending review and confirmation)
+- [ ] Bug fixes
+  - [ ] when you click on more info and button over a rapper pin it says there was a problem w the DB

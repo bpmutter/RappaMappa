@@ -66,12 +66,6 @@ function RapperCard(props) {
         <Typography variant="h5" component="h2">
           {props.fields.name}
         </Typography>
-        {props.fields.bio_yearsactivestart ? (
-          <Typography className={classes.pos} color="textSecondary">
-            <b>Active since: </b>
-            {props.fields.bio_yearsactivestart}
-          </Typography>
-        ) : null}
         <Typography variant="body2" component="p">
           <p>
             <b>Bio: </b>
