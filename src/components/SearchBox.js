@@ -1,10 +1,12 @@
 /* eslint-disable no-use-before-define */
-import React, {useState} from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import {connect} from 'react-redux';
 import SearchIcon from "@material-ui/icons/Search";
 import { setSearchActive } from '../store/rappers';
+import { invalidSearch } from '../store/errorHandler';
+
 function ComboBox(props) {
     let rapperNames = [];
     if( props.rappers && props.rappers.length){
@@ -19,6 +21,7 @@ function ComboBox(props) {
         } 
         else{
             console.log("do error handling stuff...");
+            props.invalidSearch();
         }
     }
     return (
@@ -56,6 +59,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     search: (query) => dispatch(setSearchActive(query)),
+    invalidSearch: () => dispatch(invalidSearch()),
   };
 };
 
