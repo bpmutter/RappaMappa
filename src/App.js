@@ -7,6 +7,7 @@ import keys from './config';
 import RapperPage from './components/RapperPage';
 import AboutPage from './components/AboutPage';
 import NoMatch from './components/NoMatch';
+import ErrorHandler from "./components/ErrorHandler";
 
 const {googleMapsAPIKey} = keys;
 
@@ -44,6 +45,7 @@ function App() {
             <NoMatch />
           </Route>
         </Switch>
+        <ErrorHandler />
       </Router>
     </React.StrictMode>
   );

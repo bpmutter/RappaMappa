@@ -1,10 +1,12 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
 import rappers from './rappers.js';
+import errorHandler from './errorHandler';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducer = combineReducers({
-  rappers
+  rappers,
+  errorHandler,
 });
 
 const configureStore = (initialState = {}) => {

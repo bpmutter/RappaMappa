@@ -178,7 +178,7 @@ export default function MoreInfoModal(props) {
                   style={{ alignSelf: "center" }}
                 >
                   <PlayCircleOutlineIcon />
-                  &nbsp; Listen on Spotify"
+                  &nbsp; Listen on Spotify
                 </Button>
               </>
             )}

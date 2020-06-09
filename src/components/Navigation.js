@@ -117,13 +117,19 @@ export default function SearchAppBar(props) {
             onClose={handleClose}
             TransitionComponent={Fade}
           >
-            <MenuItem onClick={handleClose} component={Link} to={"/"}>Home</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to={'/about'}>About</MenuItem>
-            <MenuItem onClick={goToGithub}>Github</MenuItem>   
+            <MenuItem onClick={handleClose} component={Link} to={"/"}>
+              Home
+            </MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to={"/about"}>
+              About
+            </MenuItem>
+            <MenuItem onClick={goToGithub}>Github</MenuItem>
           </Menu>
           <Typography className={classes.title} variant="h6" noWrap>
-            RappaMappa
+              <Link to={'/'} style={{textDecoration: 'none', color:'inherit'}}>RappaMappa</Link>
           </Typography>
+
+
           <div className={classes.search}>
             {/* <div className={classes.searchIcon}>
               <SearchIcon />

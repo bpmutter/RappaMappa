@@ -1,10 +1,11 @@
-import keys from "../config";
 import rappers from "../assets/data/rapperData.json";
-import axios from 'axios';
-import qs from 'qs';
-const {spotifyClientId, spotifyClientSecret} = keys;
 
-const LOAD_ALL = "rappamappa/rappers/LOADALL";
+//NOTE: will use in backend version
+// import keys from "../config";
+// import qs from 'qs';
+// const {spotifyClientId, spotifyClientSecret} = keys;
+
+const LOAD_ALL = "rappamappa/rappers/LOAD_ALL";
 const SET_ACTIVE = "rappamappa/rappers/SET_ACTIVE";
 const SET_INACTIVE = "rappamappa/rappers/SET_INACTIVE";
 const SET_SEARCH_ACTIVE = "rappamappa/rappers/SET_SEARCH_ACTIVE";
@@ -17,7 +18,6 @@ export const activateSearchResult = rapper => ({type: SET_SEARCH_ACTIVE, rapper}
 export const additionalInfo = rapper => ({type: LOAD_ADDITIONAL_INFO, rapper})
 
 let spotifyAccessToken;
-// export const load = (pokemon) => ({ type: LOAD, pokemon });
 export const getRappers = () => async dispatch =>{
 
     // const b64encodedAccountInfo = window.btoa(
@@ -55,7 +55,7 @@ export const loadAdditionalInfo = rapper => async dispatch => {
     const name = rapper.fields.name;
     try{
         const accessToken =
-          "BQB0GYirSHhnUiDBNIgHoyiBziASKVSjEnKrZ3QSzL2abErRPZ580L9LMA8gliJZujd2YPq3PG4malFX8As";
+          "BQC5vKVuD_fjf7nn1cDjf-rDl6OrdvNKUN32vfgVtO6n_GuxgjIWla4KDBB8hqHOUJi1T_yLnGaAS3wH-TE";
         const data = await fetch(
           `https://api.spotify.com/v1/search?q=${name}&type=artist&limit=1&offset=0`,
           {
