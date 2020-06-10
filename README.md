@@ -3,7 +3,7 @@
 ## MVPs
 
 - [x] Interactive map
-- [ ] Nav bar with search
+- [x] Nav bar with search
   - [x] include relevant links 
   - [x] bring user back to main page
 - [x] Add rapper pins to map
@@ -36,8 +36,11 @@
   - [ ] modals 
   - [ ] basic info popup
 - [ ] Backend (full day)
-  - [ ] create basic database to store rapper info - Mongo DB
-  - [ ] add spotify auth to backend (NOTE: already half done in frontend, but migrate back there)
+  - [x] add spotify auth to backend (NOTE: already half done in frontend, but migrate back there)
+  - [x] create basic database to store rapper info - Mongo DB
+  - [ ] add route for get all rappers from DB
+  - [ ] add route for get 1 rapper (actually not nec, but shouldn't be hard..could be useful later)
+  - [ ] add dotenv configuration
   - [ ] create restful route to serve to the redux store
 - [ ] Add loading screens for components (time indeterminate)
   - [ ] main map

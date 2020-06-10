@@ -68,8 +68,6 @@ export default function MoreInfoModal(props) {
       window.open(props.rapper.additionalInfo.external_urls.spotify, "_blank");
     }
   }
-  console.log("RAPPER MODAL", props.rapper);
-
   let subgenres = "";
   if(props.rapper && props.rapper.additionalInfo){
     subgenres = props.rapper.additionalInfo.genres.join(", ");

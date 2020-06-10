@@ -1,7 +1,6 @@
 import rappers from "../assets/data/rapperData.json";
 import keys from "../config";
 const {backendUrl} = keys;
-console.log("BACKEND URL::", backendUrl)
 
 const LOAD_ALL = "rappamappa/rappers/LOAD_ALL";
 const SET_ACTIVE = "rappamappa/rappers/SET_ACTIVE";
@@ -77,7 +76,6 @@ export default function reducer(state = {}, action) {
       } case LOAD_ADDITIONAL_INFO: {
         const newState = {...state}
         newState.activeRapper = action.rapper;
-        console.log(newState.activeRapper.additionalInfo)
         return newState;
       } default: return state;
   }
