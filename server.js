@@ -6,7 +6,7 @@ const fetch = require('node-fetch')
 const mongoose = require('mongoose');
 const {asyncHandler, getSpotifyAccessToken} = require('./utils');
 const port = process.env.PORT || 8080;
-const {database} = require('./config');
+const {database, environment} = require('./config');
 const Artists = require('./db/models/artist');
 const app = express();
 mongoose.connect(database, {useNewUrlParser: true})
@@ -26,22 +26,25 @@ setInterval(async ()=>{
 }, 3500000);
 
 
-let whitelist = ["http://localhost:3000", "http://localhost:5000"];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+if(environment !== 'production'){
+  let whitelist = ["http://localhost:3000", "http://localhost:5000"];
+  const corsOptions = {
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  };
+  app.use(cors(corsOptions))
+}
 
-app.use(cors(corsOptions))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-if (process.env.NODE_ENV === "production") {
+if (environment === "production") {
+  console.log('hello there')
   app.use(express.static(path.join(__dirname, "client/build")));
 }
 

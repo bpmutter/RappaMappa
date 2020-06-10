@@ -1,9 +1,8 @@
-const googleMapsAPIKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-const baseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:3000";
-const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8080"
+const googleMapsAPIKey =
+  process.env.GOOGLE_MAPS_API_KEY || "AIzaSyBNf4_S9tTiAgNXwUEDLgmSo6nbJ06NG7A";
+const backendUrl = process.env.APP_BACKEND_URL || "http://localhost:8080";
 const myEnv = {
   googleMapsAPIKey,
-  baseUrl,
   backendUrl
 };
 
