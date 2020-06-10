@@ -1,6 +1,5 @@
-import keys from "../config";
-const backendUrl = process.env.BACKEND_URL || 'http://localhost:8080'
-
+const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080'
+console.log("BACKEND URL", backendUrl)
 const LOAD_ALL = "rappamappa/rappers/LOAD_ALL";
 const SET_ACTIVE = "rappamappa/rappers/SET_ACTIVE";
 const SET_INACTIVE = "rappamappa/rappers/SET_INACTIVE";

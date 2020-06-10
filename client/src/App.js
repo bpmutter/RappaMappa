@@ -3,12 +3,11 @@ import Navigation from './components/Navigation';
 import Map from './components/Map';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
-import keys from './config';
 import AboutPage from './components/AboutPage';
 import NoMatch from './components/NoMatch';
 import ErrorHandler from "./components/ErrorHandler";
 
-const {googleMapsAPIKey} = keys;
+const googleMapsAPIKey = 'AIzaSyBNf4_S9tTiAgNXwUEDLgmSo6nbJ06NG7A';
 
 function App() {
 
