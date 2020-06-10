@@ -11,6 +11,7 @@ import { noActiveRapper } from "../store/rappers";
 import {connect} from 'react-redux';
 import MoreInfoModal from "./MoreInfoModal";
 import { loadAdditionalInfo } from "../store/rappers";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 
 const useStyles = makeStyles({
@@ -58,9 +59,9 @@ function RapperCard(props) {
               ? `${props.fields.location_neighborhood}, ${props.fields.location_city}`
               : `${props.fields.location_city}`}
           </span>
-          <CloseCardButton
-            style={{ height: 60, paddingRight: 10, cursor: "pointer" }}
-            closeInfoBox={props.removeActiveStatus}
+          <HighlightOffIcon 
+            onClick={props.removeActiveStatus} 
+            style={{ height: 60, paddingRight: 10, cursor: "pointer", zIndex:10 }}
           />
         </Typography>
         <Typography variant="h5" component="h2">

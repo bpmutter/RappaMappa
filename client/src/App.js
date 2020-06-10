@@ -4,7 +4,6 @@ import Map from './components/Map';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
 import keys from './config';
-import RapperPage from './components/RapperPage';
 import AboutPage from './components/AboutPage';
 import NoMatch from './components/NoMatch';
 import ErrorHandler from "./components/ErrorHandler";
@@ -37,9 +36,6 @@ function App() {
           </Route>
           <Route path="/about">
             <AboutPage />
-          </Route>
-          <Route path="/rappers/:id">
-            <RapperPage />
           </Route>
           {/* 404 PAGE */}
           <Route path="*">

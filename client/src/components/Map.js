@@ -33,7 +33,7 @@ const Map = withScriptjs(withGoogleMap((props) => {
             }}
             icon={{
             url: "/img/map-icon.png",
-            scaledSize: new window.google.maps.Size(0, 0),
+            scaledSize: new window.google.maps.Size(1, 1),
             }}
         >
             <RapperInfoBox {...props.activeRapper} />
