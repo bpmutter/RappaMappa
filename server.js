@@ -13,8 +13,6 @@ mongoose.connect(database, {useNewUrlParser: true})
 const db = mongoose.connection;
 db.on('error', (err)=>console.error('error::', err));
 db.once('open', ()=> console.log('connected to DB'));
-//TODO add dotenv stuff 
-
 
 //get and refresh spotify access token every hour
 let spotifyAccessToken, spotifyAccessTokenVal;
@@ -35,8 +33,9 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
 
 //TODO add async handler
 app.get("/spotify/more-info/:artist", asyncHandler(async (req, res)=>{
@@ -60,11 +59,7 @@ app.get("/artists/", asyncHandler(async (req,res)=>{
   res.send({allArtists});
 }))
 
-
-// if (process.env.NODE_ENV === "production") {
-//   // Serve any static files
-//   app.use(express.static(path.join(__dirname, "client/build")));
-
+// NOTE: PROB DON'T NEED 
 //   // Handle React routing, return all requests to React app
 //   app.get("*", function (req, res) {
 //     res.sendFile(path.join(__dirname, "client/build", "index.html"));

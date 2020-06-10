@@ -22,6 +22,4 @@ const getSpotifyAccessToken = async () => {
     return token
 }
 
-
-
 module.exports = { asyncHandler, getSpotifyAccessToken}
