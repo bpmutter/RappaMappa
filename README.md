@@ -38,8 +38,8 @@
 - [ ] Backend (full day)
   - [x] add spotify auth to backend (NOTE: already half done in frontend, but migrate back there)
   - [x] create basic database to store rapper info - Mongo DB
-  - [ ] add route for get all rappers from DB
-  - [ ] create restful route to serve to the redux store
+  - [x] add route for get all rappers from DB
+  - [x] create restful route to serve to the redux store
   - [ ] add dotenv configuration
 - [ ] Add loading screens for components (time indeterminate)
   - [ ] main map

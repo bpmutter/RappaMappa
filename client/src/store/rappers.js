@@ -15,8 +15,9 @@ export const activateSearchResult = rapper => ({type: SET_SEARCH_ACTIVE, rapper}
 export const additionalInfo = rapper => ({type: LOAD_ADDITIONAL_INFO, rapper})
 
 export const getRappers = () => async dispatch =>{
-
-    dispatch(loadAll(rappers));
+    const data = await fetch(`${backendUrl}/artists/`);
+    const {allArtists} = await data.json();
+    dispatch(loadAll(allArtists));
 }
 export const setActiveRapper = (recordid) => async (dispatch, getState) =>{
     const {rappers: {rappers} } = getState();
