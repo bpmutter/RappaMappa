@@ -12,6 +12,12 @@ import ErrorHandler from "./components/ErrorHandler";
 const {googleMapsAPIKey} = keys;
 
 function App() {
+
+    (async () => {
+    const res = await fetch("http://localhost:8080/derp");
+    console.log(await res.json());
+    })();
+
   return (
     <React.StrictMode>
       <Router>

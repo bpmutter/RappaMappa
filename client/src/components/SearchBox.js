@@ -20,7 +20,6 @@ function ComboBox(props) {
             props.search(query);
         } 
         else{
-            console.log("do error handling stuff...");
             props.invalidSearch();
         }
     }
@@ -45,7 +44,7 @@ function ComboBox(props) {
               )}
             />
           </form>
-        ) : null}{" "}
+        ) : null}
       </>
     );
 }

@@ -43,7 +43,6 @@ function ErrorHandler(props) {
 
         </div>) : null}
     </>
-    
   );
 }
 

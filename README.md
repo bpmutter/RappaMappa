@@ -5,7 +5,7 @@
 - [x] Interactive map
 - [ ] Nav bar with search
   - [x] include relevant links 
-  - [ ] bring user back to main page
+  - [x] bring user back to main page
 - [x] Add rapper pins to map
 - [x] add basic info box for selected rapper
 - [x] redux store to maintain state
@@ -13,7 +13,7 @@
   - [x] active rapper
   - [x] focus location
 - [x] searchbox that updates active rapper in state and redirects view to correct location
-- [x] More information modal (half day)
+- [x] More information modal 
   - [x] Create modal
   - [x] add custom styles and populate info
   - [x] All information from DB 
@@ -21,13 +21,14 @@
 - [x] 404 Page (1 hour remaining)
   - [x] create/render routes correctly
   - [x] make content
-- [x] About Page (1 hour)
+- [x] About Page 
   - [x] basic project information
   - [x] contact info and github
   - [x] styling
-- [ ] Error handling (1.5 hours)
-  - [ ] when search result not in DB 
+- [x] Error handling 
+  - [x] when search result not in DB 
   - [x] when problem with Spotify API
+  - [x] set up error handling in redux for extendibility 
 - [ ] Mobile optimization (half day)
   - [ ] map size
   - [ ] search box
@@ -39,6 +40,7 @@
   - [ ] add spotify auth to backend (NOTE: already half done in frontend, but migrate back there)
   - [ ] create restful route to serve to the redux store
 - [ ] Add loading screens for components (time indeterminate)
+  - [ ] main map
 - [ ] Deploy app (2+ hours)
   - [ ] make sure API keys are secure (spotify is trivial, google maps is ???)
   - [ ] separate backend and front end (probably)

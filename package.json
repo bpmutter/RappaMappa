@@ -1,47 +1,30 @@
 {
   "name": "rappa-mappa",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.10.1",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.55",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "qs": "^6.9.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-google-maps": "^9.4.5",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
-  },
+  "version": "1.0.0",
+  "description": "- [x] Interactive map - [ ] Nav bar with search   - [x] include relevant links    - [x] bring user back to main page - [x] Add rapper pins to map - [x] add basic info box for selected rapper - [x] redux store to maintain state   - [x] include rapper list   - [x] active rapper   - [x] focus location - [x] searchbox that updates active rapper in state and redirects view to correct location - [x] More information modal    - [x] Create modal   - [x] add custom styles and populate info   - [x] All information from DB    - [x] Bring in additional data from spotify API - [x] 404 Page (1 hour remaining)   - [x] create/render routes correctly   - [x] make content - [x] About Page    - [x] basic project information   - [x] contact info and github   - [x] styling - [x] Error handling    - [x] when search result not in DB    - [x] when problem with Spotify API   - [x] set up error handling in redux for extendibility  - [ ] Mobile optimization (half day)   - [ ] map size   - [ ] search box   - [ ] nav bar    - [ ] modals    - [ ] basic info popup - [ ] Backend (full day)   - [ ] create basic database to store rapper info - Mongo DB   - [ ] add spotify auth to backend (NOTE: already half done in frontend, but migrate back there)   - [ ] create restful route to serve to the redux store - [ ] Add loading screens for components (time indeterminate)   - [ ] main map - [ ] Deploy app (2+ hours)   - [ ] make sure API keys are secure (spotify is trivial, google maps is ???)   - [ ] separate backend and front end (probably) - [ ] Create project README (4 hours)",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpmutter/RappaMappa.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bpmutter/RappaMappa/issues"
+  },
+  "homepage": "https://github.com/bpmutter/RappaMappa#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {
-    "gh-pages": "^3.0.0"
+    "nodemon": "^2.0.4"
   }
 }
