@@ -1,9 +1,7 @@
 import rappers from "../assets/data/rapperData.json";
-
-//NOTE: will use in backend version
-// import keys from "../config";
-// import qs from 'qs';
-// const {spotifyClientId, spotifyClientSecret} = keys;
+import keys from "../config";
+const {backendUrl} = keys;
+console.log("BACKEND URL::", backendUrl)
 
 const LOAD_ALL = "rappamappa/rappers/LOAD_ALL";
 const SET_ACTIVE = "rappamappa/rappers/SET_ACTIVE";
@@ -39,18 +37,9 @@ export const setSearchActive = queryName => async (dispatch, getState) =>{
 export const loadAdditionalInfo = rapper => async dispatch => {
     const name = rapper.fields.name;
     try{
-        const accessToken =
-          "BQC5vKVuD_fjf7nn1cDjf-rDl6OrdvNKUN32vfgVtO6n_GuxgjIWla4KDBB8hqHOUJi1T_yLnGaAS3wH-TE";
-        const data = await fetch(
-          `https://api.spotify.com/v1/search?q=${name}&type=artist&limit=1&offset=0`,
-          {
-            headers: new Headers({
-              Authorization: `Bearer ${accessToken}`,
-            }),
-          }
-        );
+        const data = await fetch(`${backendUrl}/spotify/more-info/${name}`)
         const json = await data.json();
-        const artistInfo = json.artists.items[0];
+        const {artistInfo} = json;
         rapper.additionalInfo = artistInfo;
         dispatch(additionalInfo(rapper));
     } catch(err) { console.error("OH SNAP", err)}

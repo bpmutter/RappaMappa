@@ -34,18 +34,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //TODO add async handler
 app.get("/spotify/more-info/:artist", asyncHandler(async (req, res)=>{
-    const artistName = req.params.artist;
-    const data = await fetch(
-      `https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=1&offset=0`,
-      {
-        headers: {
-          Authorization: `Bearer ${spotifyAccessTokenVal}`,
-        },
-      }
-    );
-    const json = await data.json();
-    const artistInfo = json.artists.items[0];
-    res.send({artistInfo});
+  const artistName = req.params.artist;
+  const data = await fetch(
+    `https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=1&offset=0`,
+    {
+      headers: {
+        Authorization: `Bearer ${spotifyAccessTokenVal}`,
+      },
+    }
+  );
+  const json = await data.json();
+  const artistInfo = json.artists.items[0];
+  res.send({artistInfo});
 }));
 
 // API calls
