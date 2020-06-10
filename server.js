@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const {asyncHandler, getSpotifyAccessToken} = require('./utils');
 const port = process.env.PORT || 8080;
 const {database} = require('./config');
-
+const Artists = require('./db/models/artist');
 const app = express();
 mongoose.connect(database, {useNewUrlParser: true})
 const db = mongoose.connection;
@@ -54,18 +54,12 @@ app.get("/spotify/more-info/:artist", asyncHandler(async (req, res)=>{
   res.send({artistInfo});
 }));
 
-// API calls
-app.get("/derp", (req,res)=>{res.send({body: 'please do something'})})
+app.get("/artists/", asyncHandler(async (req,res)=>{
+  const allArtists = await Artists.find({});
+  console.log(allArtists)
+  res.send({allArtists});
+}))
 
-app.get("/api/hello", (req, res) => {
-  res.send({ express: "Hello From Express" });
-});
-
-app.post("/api/world", (req, res) => {
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`
-  );
-});
 
 // if (process.env.NODE_ENV === "production") {
 //   // Serve any static files
