@@ -1,6 +1,5 @@
-import rappers from "../assets/data/rapperData.json";
 import keys from "../config";
-const {backendUrl} = keys;
+const backendUrl = process.env.BACKEND_URL || 'http://localhost:8080'
 
 const LOAD_ALL = "rappamappa/rappers/LOAD_ALL";
 const SET_ACTIVE = "rappamappa/rappers/SET_ACTIVE";
