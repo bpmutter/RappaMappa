@@ -17,23 +17,8 @@ export const deactivate = () => ({type: SET_INACTIVE, rapper: null });
 export const activateSearchResult = rapper => ({type: SET_SEARCH_ACTIVE, rapper});
 export const additionalInfo = rapper => ({type: LOAD_ADDITIONAL_INFO, rapper})
 
-let spotifyAccessToken;
 export const getRappers = () => async dispatch =>{
 
-    // const b64encodedAccountInfo = window.btoa(
-    //   `${spotifyClientId}:${spotifyClientSecret}`
-    // );
-    
-    // const data = await fetch("https://accounts.spotify.com/api/token", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //     Authorization: `Basic ${b64encodedAccountInfo}`,
-    //   },
-    //   body: qs.stringify({ grant_type: "client_credentials" }),
-    // });
-    // const json = await data.json();
-    // console.log('ACCESS TOKEN::', json)
     dispatch(loadAll(rappers));
 }
 export const setActiveRapper = (recordid) => async (dispatch, getState) =>{

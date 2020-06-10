@@ -1,11 +1,27 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const cors = require('cors')
+const cors = require('cors');
+const fetch = require('node-fetch')
+const {asyncHandler, getSpotifyAccessToken} = require('./utils');
 const app = express();
 const port = process.env.PORT || 8080;
+//TODO add dotenv stuff 
 
-var corsOptions = {
+
+//get and refresh spotify access token every hour
+let spotifyAccessToken, spotifyAccessTokenVal;
+(async ()=>{
+    spotifyAccessToken = await getSpotifyAccessToken();
+    spotifyAccessTokenVal = spotifyAccessToken.access_token;
+    console.log("TOKEN VAL", spotifyAccessToken)
+})();
+setInterval(async ()=>{
+    spotifyAccessToken = await getSpotifyAccessToken();
+    spotifyAccessTokenVal = spotifyAccessToken.access_token;
+}, 3500000);
+
+const corsOptions = {
   origin: "http://localhost:3000",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
@@ -13,8 +29,28 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
+
+//TODO add async handler
+app.get("/spotify/more-info/:artist", asyncHandler(async (req, res)=>{
+    const artistName = req.params.artist;
+    const data = await fetch(
+      `https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=1&offset=0`,
+      {
+        headers: {
+          Authorization: `Bearer ${spotifyAccessTokenVal}`,
+        },
+      }
+    );
+    const json = await data.json();
+    const artistInfo = json.artists.items[0];
+    res.send({artistInfo});
+}));
+
 // API calls
 app.get("/derp", (req,res)=>{res.send({body: 'please do something'})})
+
 app.get("/api/hello", (req, res) => {
   res.send({ express: "Hello From Express" });
 });
