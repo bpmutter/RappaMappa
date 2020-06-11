@@ -1,13 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+
 const artistSchema = new mongoose.Schema({
-  datasetid: {
-    type: String,
-    required: false,
-  },
-  recordid: {
-    type: String,
-    required: false,
-  },
+  datasetid: String,
+  recordid: String,
   fields: {
     location_city: String,
     name: String,
@@ -24,5 +19,4 @@ const artistSchema = new mongoose.Schema({
   },
   record_timestamp: String,
 });
-
 module.exports = mongoose.model('Artist', artistSchema);

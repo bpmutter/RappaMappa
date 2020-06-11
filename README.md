@@ -48,7 +48,7 @@
     - [x] spotify
     - [ ] google maps - need to secure from google cloud console 
   - [ ] heroku for app files
-  - [ ] db cloud hosting 
+  - [x] db cloud hosting 
   - [ ] create separate dev/production environments
 - [ ] Create project README (4 hours)
 

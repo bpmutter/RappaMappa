@@ -7,66 +7,19 @@ const mongoose = require('mongoose');
 const {asyncHandler, getSpotifyAccessToken} = require('./utils');
 const port = process.env.PORT || 8080;
 const {database, environment} = require('./config');
-// const Artists = require('./db/models/artist');
+const Artist = require('./db/models/artist');
 const app = express();
-const cdb = 'mongodb+srv://testuser:testpassword@rappamappadb-g8rkp.mongodb.net/RappaMappa?retryWrites=true&w=majority';
+// const cdb = 'mongodb+srv://testuser:testpassword@rappamappadb-g8rkp.mongodb.net/RappaMappa?retryWrites=true&w=majority';
 
-const artistSchema = new mongoose.Schema({
-  datasetid: String,
-  recordid: String,
-  fields: {
-    location_city: String,
-    name: String,
-    location_coordinates: [Number, Number],
-    bio_summary: String,
-    bio_yearsactivestart: String,
-    youtube_clipexampleurl: String,
-    bio_url: String,
-    categories: String,
-  },
-  geometry: {
-    type: String,
-    coordinates: [Number, Number],
-  },
-  record_timestamp: String,
-});
-const Artist = mongoose.model("Artist", artistSchema );
-
-mongoose.connect(cdb, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false
-})
+mongoose
+  .connect(database, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => console.log("Connected to MongoDB successfully"))
-  // .then(() => {
-  //   // const Artist = require("./db/models/artist");
-  //   Artist.find({}).then((events) => {
-  //     console.log("ARTISTS:", events);
-  //   });
-
-  // })
   .catch((err) => console.log(err));
-
-  // const db = mongoose.connection;
-  // db.on("open", function () {
-  //   db.db.listCollections().toArray(function (err, names) {
-  //     if (err) {
-  //       console.log(err);
-  //     } else {
-  //       console.log(names);
-  //     }
-  //     // Artist.find().exec(function (err, results) {
-  //     //   var count = results.length;
-  //     //   console.log("COUNT",count);
-  //     // });
-
-  //     mongoose.connection.close();
-  //   });
-  // });
-
-// db.on('error', (err)=>console.error('error::', err));
-// db.on('open', ()=> console.log('connected to DB'));
 
 //get and refresh spotify access token every hour
 let spotifyAccessToken, spotifyAccessTokenVal;
@@ -78,6 +31,8 @@ setInterval(async ()=>{
     spotifyAccessToken = await getSpotifyAccessToken();
     spotifyAccessTokenVal = spotifyAccessToken.access_token;
 }, 3500000);
+
+
 
 app.use(cors());
 // let whitelist = [
