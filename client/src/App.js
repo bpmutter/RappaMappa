@@ -12,9 +12,6 @@ import LoadingSpinner from './components/LoadingSpinner';
 const googleMapsAPIKey = 'AIzaSyBNf4_S9tTiAgNXwUEDLgmSo6nbJ06NG7A';
 
 function App(props) {
-  const [loading, setLoading] = useState(true);
-
-
   
   useEffect(() => {
     (async () => {
@@ -22,6 +19,7 @@ function App(props) {
       console.log(props.rappers);
     })();
   }, []);
+  
   return (
     <React.StrictMode>
       <Router>

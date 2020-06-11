@@ -6,12 +6,9 @@ import {connect} from 'react-redux';
 import SearchIcon from "@material-ui/icons/Search";
 import { setSearchActive } from '../store/rappers';
 import { invalidSearch } from '../store/errorHandler';
-import { fade, makeStyles } from "@material-ui/core/styles";
 
 
-const useStyles = makeStyles(theme =>({
 
-}))
 function ComboBox(props) {
     let rapperNames = [];
     if( props.rappers && props.rappers.length){
@@ -35,7 +32,6 @@ function ComboBox(props) {
             <Autocomplete
               id="combo-box"
               options={rapperNames}
-              // style={{ width: 300 }}
               autoComplete
               noOptionsText={"Please select one of the listed artists"}
               renderInput={(params) => (
