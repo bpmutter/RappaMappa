@@ -44,8 +44,12 @@
 - [ ] Add loading screens for components (time indeterminate)
   - [ ] main map
 - [ ] Deploy app (2+ hours)
-  - [ ] make sure API keys are secure (spotify is trivial, google maps is ???)
-  - [ ] separate backend and front end (probably)
+  - [ ] make sure API keys are secure 
+    - [x] spotify
+    - [ ] google maps - need to secure from google cloud console 
+  - [ ] heroku for app files
+  - [ ] db cloud hosting 
+  - [ ] create separate dev/production environments
 - [ ] Create project README (4 hours)
 
 ## Stretch Goals
