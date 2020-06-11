@@ -35,21 +35,21 @@
   - [ ] nav bar 
   - [ ] modals 
   - [ ] basic info popup
-- [ ] Backend (full day)
+- [x] Backend (full day)
   - [x] add spotify auth to backend (NOTE: already half done in frontend, but migrate back there)
   - [x] create basic database to store rapper info - Mongo DB
   - [x] add route for get all rappers from DB
   - [x] create restful route to serve to the redux store
-  - [ ] add dotenv configuration
+  - [x] add dotenv configuration
 - [ ] Add loading screens for components (time indeterminate)
   - [ ] main map
 - [ ] Deploy app (2+ hours)
   - [ ] make sure API keys are secure 
     - [x] spotify
     - [ ] google maps - need to secure from google cloud console 
-  - [ ] heroku for app files
+  - [x] heroku for app files
   - [x] db cloud hosting 
-  - [ ] create separate dev/production environments
+  - [x] create separate dev/production environments
 - [ ] Create project README (4 hours)
 
 ## Stretch Goals
