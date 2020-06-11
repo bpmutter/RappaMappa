@@ -50,6 +50,8 @@ export default function reducer(state = {}, action) {
   Object.freeze(state);
   switch(action.type){
       case LOAD_ALL: {
+          const newState = {...state};
+          newState.rappers = action.rappers;
           return {
             ...state,
             rappers: action.rappers

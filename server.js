@@ -64,7 +64,7 @@ app.get(
   "/artists/",
   asyncHandler(async (req, res) => {
     const allArtists = await Artist.find({});
-    console.log("ALL ARTISTS::", allArtists[55]);
+    console.log("ALL ARTISTS::", allArtists);
     res.send({ allArtists });
   })
 );
