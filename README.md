@@ -31,8 +31,8 @@
   - [x] set up error handling in redux for extendibility 
 - [ ] Mobile optimization (half day)
   - [ ] map size
-  - [ ] search box
-  - [ ] nav bar 
+  - [x] search box
+  - [x] nav bar 
   - [ ] modals 
   - [ ] basic info popup
 - [x] Backend (full day)
