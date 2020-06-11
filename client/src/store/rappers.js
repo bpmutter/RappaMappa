@@ -1,6 +1,5 @@
 const backendUrl =
-  process.env.REACT_APP_BACKEND_URL ||
-  "https://nameless-headland-04288.herokuapp.com";
+  process.env.REACT_APP_BACKEND_URL || "https://rappamappa.herokuapp.com/";
 console.log("BACKEND URL", backendUrl)
 const LOAD_ALL = "rappamappa/rappers/LOAD_ALL";
 const SET_ACTIVE = "rappamappa/rappers/SET_ACTIVE";

@@ -41,8 +41,8 @@
   - [x] add route for get all rappers from DB
   - [x] create restful route to serve to the redux store
   - [x] add dotenv configuration
-- [ ] Add loading screens for components (time indeterminate)
-  - [ ] main map
+- [x] Add loading screens for components (time indeterminate)
+  - [x] main map
 - [ ] Deploy app (2+ hours)
   - [ ] make sure API keys are secure 
     - [x] spotify
