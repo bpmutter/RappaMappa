@@ -52,9 +52,12 @@
   - [x] db cloud hosting 
   - [x] create separate dev/production environments
 - [ ] Create project README (4 hours)
+  - [ ] Application architecture diagram
+  - [ ] Screencasts of app turned into GIFs
 - [ ] BUG: when use searches on about page, it doesn't redirect to main page (although the search is processed correctly). should be a straightforward redirect 
 
 ## Stretch Goals
+- [ ] fuzzy search results (if there's a good library it should be quick)
 - [ ] Data visualization page (whole day)
   - [ ] Use Google Data Studio API to create 4 basic maps and charts (or possibly other API). state-to-state comparison, regional comparison
   - [ ] **super strech** integrate additional third party APIs to get further data (billboard, etc.)
