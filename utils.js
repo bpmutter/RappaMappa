@@ -19,7 +19,7 @@ const getSpotifyAccessToken = async () => {
       body: qs.stringify({ grant_type: "client_credentials" }),
     });
     const token = await data.json(); //full token object
-    return token
+    return token;
 }
 
 module.exports = { asyncHandler, getSpotifyAccessToken}

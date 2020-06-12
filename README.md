@@ -1,12 +1,12 @@
 # RappaMappa
-*By Ben Perlmutter * [Visit RappaMappa](http://rappamappa.herokuapp.com/)*
+*By Ben Perlmutter - [Visit RappaMappa](http://rappamappa.herokuapp.com/)*
 
 **Table of Contents**
-* RappaMappa at a Glance
-* Application Architecture & Technologies Used 
-* Frontend Overview
-* Backend Overview
-* Conclusion & Next Steps
+* [RappaMappa at a Glance](#rappamappa-at-a-glance)
+* [Application Architecture & Technologies Used](#application-architecture) 
+* [Frontend Overview](#frontend-overview)
+* [Backend Overview](#backend-overview)
+* [Conclusion & Next Steps](#conclusion-and-next-steps)
 
 ## RappaMappa at a Glance
 RappaMappa is a fullstack [MERN](https://www.geeksforgeeks.org/mern-stack/) app that lets the user explore where rappers have come from and access information about the artist. 
@@ -36,9 +36,9 @@ Redux and the react-redux library were used to manage application state and make
 
 All artist information is fetched on page load and kept in the Redux store. While this expensive operation lengthens the initial load time, it also allows for a snappy experience after that load.
 
-Redux also stores and sets information about the 'activeRapper', whichever artist has been selected by the user. By managing this state in Redux, it provides easy access to the information across components without prop threading. This was particularly important because there were so many components in the application, largely due to all the artist pins being individual components, that if too many components were re-rendering constantly because of state change it would cause significant performance issues or crash the application completely. Redux provided a relatively simple way to manage this point of complexity. 
+Redux also stores and sets information about the `activeRapper`, whichever artist has been selected by the user. By managing this state in Redux, it provides easy access to the information across components without prop threading. This was particularly important because there were so many components in the application, largely due to all the artist pins being individual components, that if too many components were re-rendering constantly because of state change it would cause significant performance issues or crash the application completely. Redux provided a relatively simple way to manage this point of complexity. 
 
-Redux also allows for a lot of extendibility if new features are to be implemented (additional feature wish-list discussed in conclusion). 
+Redux also allows for a lot of extendibility if new features are to be implemented (additional feature wish-list discussed in [conclusion](#conclusion-and-next-steps)). 
 
 #### Material UI
 RappaMappa uses the Material UI framework. Material provides a great library of elegant, responsive components, and tools for refactoring them to the application's need. There is also extensive documentation of Material, which helped resolve the issues that came up during the development process.
@@ -47,14 +47,53 @@ Material is also great for mobilize optimizing custom components with its `makeS
 
 One Material component that was particularly important for the project was [Autocomplete](https://material-ui.com/components/autocomplete/). It was used in the search box to dynamically display artist recommendations based on user input. The Autocomplete component allowed for a rich search experience with minimal technical overhead. 
 
-##### maybe add codeblock here for Autocomplete
+##### Search implementation with Autocomplete component
+```jsx
+function SearchBox(props) {
+    let rapperNames = [];
+    if( props.rappers && props.rappers.length){
+        rapperNames = props.rappers.map(rapper=> rapper.fields.name)
+    }
 
+    const handleSearch = e => {
+        e.preventDefault();
+        const query = document.getElementsByName("search-query")[0].value;
+        if(rapperNames.includes(query)){
+            props.search(query);
+        } 
+        else{
+            props.invalidSearch();
+        }
+    }
+    return (
+      <>
+        {props.rappers && props.rappers.length ? (
+          <form onSubmit={handleSearch} style={{width: '100%'}}>
+            <Autocomplete
+              id="combo-box"
+              options={rapperNames}
+              autoComplete
+              noOptionsText={"Please select one of the listed artists"}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label={<SearchIcon />}
+                  variant="outlined"
+                  name="search-query"
+                  style={{ color: "white" }}
+                />
+              )}
+            />
+          </form>
+        ) : null}
+      </>
+    );
+}
+```
 #### Google Maps Javascript API
 The Google Maps Javascript API is absolutely essential to this project. Basically the entire frontend is built on top of the Google Maps API via the react-google-maps library. All artist information is rendered on a Google Map component as pins, and then displayed in custom stylized Infobox components. 
 
 The API has a truly robust feature set, of which this application just scratched the surface. However, with its scope also lie many bugs and other issues. Of particular pain throughout the development, were the Pins and Infobox components. For instance, to render the artist information on mobile devices, it required forgoing the Infobox component associated with the Pin of the large-screen version in favor of a different component positioned to the bottom of the screen. This change was necessary because the Infobox component has to have static position, while the mobile styling required positioning relative to the device window for easy use on smaller screen size. 
-
-##### add code for infobox here
 
 ## Backend Overview
 RappaMappa uses an Express server with MongoDB as the database. Compared to the frontend, the backend of RappaMappa is fairly simple, with the server sending the front end to the client, receiving requests, and sending data to the frontend. Below are the backend technologies used with some notes regarding their implementation. 
@@ -66,12 +105,42 @@ Express was the natural choice for RappaMappa's server-side framework. The minim
 #### MongoDB
 MongoDB was perfect for this project because its collections of JSON-like records made it very easy to store the artist information, which is in JSON object form. The [Mongoose ORM](https://mongoosejs.com/) was used to communicate between the database, hosted in MongoDB Atlas, and the server. 
 
-#### Spotify Web API**: 
+#### Spotify Web API 
 In addition to the information stored in the database, the backend also fetches additional artist data in a JSON object from the Spotify Web API. This information includes: artist image, artist popularity, subgenres, and an external link to listen to the artists on Spotify. 
 
 While the Spotify Web API is a fairly standard RESTful API, it requires authentication with a token that expires after an hour. To facilitate this, the Express server fetches a new token every hour, which is used in all requests to the Spotify server.
 
-  * ### code for spotify auth flow 
+##### Code for Spotify auth flow 
+```js
+// in /utils.js
+const getSpotifyAccessToken = async () => {
+    const accountCredential = `${spotifyClientId}:${spotifyClientSecret}`;
+    let buff = new Buffer(accountCredential);
+    let b64encodedAccountInfo = buff.toString("base64");
+
+    const data = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${b64encodedAccountInfo}`,
+      },
+      body: qs.stringify({ grant_type: "client_credentials" }),
+    });
+    const token = await data.json(); //full token object
+    return token;
+}
+
+// in server.js
+let spotifyAccessToken, spotifyAccessTokenVal;
+(async ()=>{
+    spotifyAccessToken = await getSpotifyAccessToken();
+    spotifyAccessTokenVal = spotifyAccessToken.access_token;
+})();
+setInterval(async ()=>{
+    spotifyAccessToken = await getSpotifyAccessToken();
+    spotifyAccessTokenVal = spotifyAccessToken.access_token;
+}, 3500000);
+```
   
 #### Rap World Dataset 
 The artist information in the database was gathered from the [Rap World dataset](https://public.opendatasoft.com/explore/dataset/rapworld/api/). It's a well-curated dataset with consistent information about rappers and where they're from. Without this dataset, collecting the information that makes this project possible would have been much more complicated—likely involving some web scraping and \*shudder\* manual data entry. 
@@ -81,7 +150,7 @@ It is worth noting that the Rap World data was generated as part of a somewhat s
 ## Conclusion and Next Steps
 Time to break the 4th wall. RappaMappa was a ton of fun to build. I'm a lifelong fan of hip-hop and it was an amazing experience getting to combine that passion with my newer passion for coding. 
 
-This also marks the first time that I've built a fullstack app solo, and my first project of significant scope where I originated the idea and brought it into existence. It has been an incredibly rewarding experience to create it. 
+This also marks the first time that I've built a fullstack app solo, and my first project of significant scope where I originated the idea and brought it into existence. RappaMappa has been an incredibly rewarding to create. 
 
 While making RappaMappa, I got to play with a whole bunch of new technologies and get better at even more. At the beginning of the project, I'd only learned React 2 weeks previous, Redux 1 week before. I've come out of it stronger with both, and eager to continue getting better with React and creating cool stuff with the many amazing libraries and technologies of the React ecosystem. 
 

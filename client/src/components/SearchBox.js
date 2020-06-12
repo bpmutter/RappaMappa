@@ -9,7 +9,7 @@ import { invalidSearch } from '../store/errorHandler';
 
 
 
-function ComboBox(props) {
+function SearchBox(props) {
     let rapperNames = [];
     if( props.rappers && props.rappers.length){
         rapperNames = props.rappers.map(rapper=> rapper.fields.name)
@@ -63,4 +63,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ComboBox);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);
