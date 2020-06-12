@@ -12,10 +12,14 @@
 RappaMappa is a fullstack [MERN](https://www.geeksforgeeks.org/mern-stack/) app that lets the user explore where rappers have come from and access information about the artist. 
 
 Users can visually explore the map, which features 581 artists, and search for artists with the integrated search box. 
-##### GIF HERE! 
+
+##### RappaMappa at a glance
+![RappaMappa at a glance](/readme-resources/rappa-mappa-demo-1.gif)
 
 RappaMappa is also integrated with the [Spotify Web API](https://developer.spotify.com/documentation/web-api/). When users click on the 'Music and More' button for each rapper, it renders additional information about the artist from Spotify, including a link to listen to the artist's music on the Spotify web player. 
-##### GIF HERE !!
+
+##### RappaMappa artist search with more info
+![RappaMappa artist search with more info](/readme-resources/rappa-mappa-demo-2.gif)
 
 ## Application Architecture
 As noted above, RappaMappa is a fullstack MERN application. The majority of the application logic occurs within front end's [Redux](https://redux.js.org/) store and its interactions with the [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/tutorial) via the [react-google-maps](https://www.npmjs.com/package/react-google-maps) library. RappaMappa uses the [Material UI framework](https://material-ui.com/) for styling components. 
