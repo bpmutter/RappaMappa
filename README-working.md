@@ -26,23 +26,25 @@ The backend serves the frontend, responds to frontend requests, acts as an inter
 
 ## Frontend Overview
 RappaMappa is very frontend heavy application. It makes extensive use of 3rd-party APIs and resources to create a dynamic and data-rich experience. Below are the frontend technologies that make this application possible. 
-* 
+
 ### Frontend Technologies Used:
 **React**: At its core, RappaMappa is a React application. It uses very little of the core React library besides passing a few props, but makes extensive use of the technologies and libraries of the React ecosystem. Without the robust and well-documented React ecosystem, creating RappaMappa would have been a substantially more challenging enterprise. 
 
-**Redux**: Redux and the react-redux library were used to manage application state and make fetch requests to the server for data. T
-  * stores all app info
-  * this includes an array with all artists
-    * that is why despite fairly slow initial load time, the app generally is pretty snappy
-  * also allows for some interesting interactions like, setting a application-wide 'activeRapper', that dictates that additional info only about that rapper will show. 
-    * this was very important given the large number of components. by keeping 1 active rapper, and moving where the information about them renders around the map, it ensures that there isn't constant component re-rendering. 
-      * before implementing this feature during development, the React would actually crash because it had to render too many components all at once! 
-**Material UI**: 
-  * great resource for out of the box library
-  * strong feature set with extensive documentation
-    * talk about search using the Autocomplete component
-      *  #### maybe search code example 
-  * make sure to talk about making it responsive and how material is good for that 
+**Redux**: Redux and the react-redux library were used to manage application state and make fetch requests to the server for data. 
+
+All artist information is fetched on page load and kept in the Redux store. While this expensive operation lengthens the initial load time, it also allows for a snappy experience after that load.
+
+Redux also stores and sets information about the 'activeRapper', whichever artist has been selected by the user. By managing this state in Redux, it provides easy access to the information across components without prop threading. This was particularly important because there were so many components in the application, largely due to all the artist pins being individual components, that if too many components were re-rendering constantly because of state change it would cause significant performance issues or crash the application completely. Redux provided a relatively simple way to manage this point of complexity. 
+
+Redux also allows for a lot of extendibility if new features are to be implemented (additional feature wish-list discussed in conclusion). 
+
+**Material UI**: RappaMappa uses the Material UI framework. Material provides a great library of elegant, responsive components, and tools for refactoring them to the application's need. There is also extensive documentation of Material, which helped resolve the issues that came up during the development process.
+
+Material is also great for mobilize optimizing custom components with its `makeStyles` and `useMediaQuery` hooks. These hooks were particularly useful for making the navbar and popup box responsive to varying device widths. 
+
+One Material component that was particularly important for the project was [Autocomplete](https://material-ui.com/components/autocomplete/). It was used in the search box to dynamically display artist recommendations based on user input. The Autocomplete component allowed for a rich search experience with minimal technical overhead. 
+
+#### maybe add codeblock here for Autocomplete
 
 **Google Maps Javascript API**:
   * probbly most important part of this project, as it provides the map and allows for all interaction with it 
