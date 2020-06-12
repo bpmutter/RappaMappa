@@ -8,6 +8,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import Paper from "@material-ui/core/Paper";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -27,7 +29,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: 'column',
     alignItems: 'flex-start',
+    position: 'relative',
 
+  },
+  closeButton: {
+    position: 'absolute',
+    cursor: 'pointer',
+    right: 15,
+    top: 15,
   },
   avatar: {
     margin: "0 auto",
@@ -62,7 +71,6 @@ export default function MoreInfoModal(props) {
     setOpen(false);
   };
   const spotifyRedirectHandler = (e) => {
-    //TODO
     e.preventDefault();
     if(props.rapper && props.rapper.additionalInfo){
       window.open(props.rapper.additionalInfo.external_urls.spotify, "_blank");
@@ -102,6 +110,10 @@ export default function MoreInfoModal(props) {
       >
         <Fade in={open} disableAutoFocus={true}>
           <Paper className={classes.paper} disableAutoFocus={true}>
+            <HighlightOffIcon
+              onClick={handleClose}
+              className={classes.closeButton}
+            />
             {!props.rapper.additionalInfo ? (
               <>
                 <h2 id="rapper-more-info">Aww snap!</h2>

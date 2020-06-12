@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { useTheme, makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -12,11 +12,18 @@ import {connect} from 'react-redux';
 import MoreInfoModal from "./MoreInfoModal";
 import { loadAdditionalInfo } from "../store/rappers";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme =>({
   root: {
-    maxWidth: 350,
+    [theme.breakpoints.up("sm")]:{width: 350,},
+    [theme.breakpoints.down("sm")]: {
+      width: 300,
+      position: 'fixed',
+      bottom: 0,
+      left: 15
+    },
   },
   bullet: {
     display: "inline-block",
@@ -29,10 +36,11 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-});
+}));
 
 function RapperCard(props) {
   const classes = useStyles();
+
   useEffect( ()=>{
       (async () => {
         await props.loadAdditionalInfo(props.activeRapper)
@@ -86,14 +94,21 @@ function RapperCard(props) {
 }
 
 const RapperInfoBox = (props) => {
-    return (
-      <InfoBox
-        options={
-          { closeBoxURL: ``, enableEventPropagation: true }
-        }
-      >
-        <RapperCard {...props}/>
-      </InfoBox>
+
+    const theme = useTheme();
+    const largeScreen = useMediaQuery(theme.breakpoints.up("sm"));
+
+    return ( <>
+      {largeScreen ? 
+        <InfoBox
+          options={
+            { closeBoxURL: ``, enableEventPropagation: true }
+          }
+        >
+          <RapperCard {...props}/>
+        </InfoBox> : 
+      <RapperCard {...props}/>}
+      </>
     );
 }
 

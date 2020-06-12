@@ -19,7 +19,7 @@ function App(props) {
       console.log(props.rappers);
     })();
   }, []);
-  
+
   return (
     <React.StrictMode>
       <Router>
@@ -36,7 +36,9 @@ function App(props) {
                 containerElement={
                   <div
                     style={{
-                      height: `90.5%`,
+                      bottom: 0,
+                      left: 0,
+                      top: 55,
                       width: "100%",
                       position: "absolute",
                     }}

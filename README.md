@@ -30,11 +30,12 @@
   - [x] when problem with Spotify API
   - [x] set up error handling in redux for extendibility 
 - [ ] Mobile optimization (half day)
-  - [ ] map size
+  - [x] map size
   - [x] search box
   - [x] nav bar 
-  - [ ] modals 
-  - [ ] basic info popup
+  - [x] basic info popup - absolute location for the marker infobox when screensize is small?
+  - [x] more info modal - just gotta make an X button
+  - [ ] about page needs to be non-mobile optimized...narrower box on big screens
 - [x] Backend (full day)
   - [x] add spotify auth to backend (NOTE: already half done in frontend, but migrate back there)
   - [x] create basic database to store rapper info - Mongo DB
@@ -69,3 +70,5 @@
   - [ ] backend updates data with new rapper (pending review and confirmation)
 - [ ] Bug fixes
   - [ ] when you click on more info and button over a rapper pin it says there was a problem w the DB
+  - [ ] when you make the more info popup go small to big again, it doesn't resize properly
+    - [ ] i think this could probably be fixed with a separate class for each, instead of the current 1 class plus media query 
