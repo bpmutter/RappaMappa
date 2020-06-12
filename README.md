@@ -23,7 +23,6 @@ As noted above, RappaMappa is a fullstack MERN application. The majority of the 
 The backend serves the frontend, responds to frontend requests, acts as an intermediary to serve Spotify data to the frontend, and fetches data from the MongoDB database. 
 
 ![RappaMappa application architecture](/readme-resources/rappa-mappa-architecture.png)
-*RappaMappa application architecture*
 
 ## Frontend Overview
 RappaMappa is very frontend heavy application. It makes extensive use of 3rd-party APIs and resources to create a dynamic and data-rich experience. Below are the frontend technologies that make this application possible. 

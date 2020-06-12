@@ -18,7 +18,7 @@
   - [x] add custom styles and populate info
   - [x] All information from DB 
   - [x] Bring in additional data from spotify API
-- [x] 404 Page (1 hour remaining)
+- [x] 404 Page 
   - [x] create/render routes correctly
   - [x] make content
 - [x] About Page 
@@ -29,36 +29,37 @@
   - [x] when search result not in DB 
   - [x] when problem with Spotify API
   - [x] set up error handling in redux for extendibility 
-- [x] Mobile optimization (half day)
+- [x] Mobile optimization 
   - [x] map size
   - [x] search box
   - [x] nav bar 
   - [x] basic info popup - absolute location for the marker infobox when screensize is small?
   - [x] more info modal - just gotta make an X button
   - [x] about page needs to be non-mobile optimized...narrower box on big screens
-- [x] Backend (full day)
-  - [x] add spotify auth to backend (NOTE: already half done in frontend, but migrate back there)
+- [x] Backend 
+  - [x] add spotify auth to backend 
   - [x] create basic database to store rapper info - Mongo DB
   - [x] add route for get all rappers from DB
   - [x] create restful route to serve to the redux store
   - [x] add dotenv configuration
-- [x] Add loading screens for components (time indeterminate)
+- [x] Add loading screens for components 
   - [x] main map
-- [ ] Deploy app (2+ hours)
+- [ ] Deploy app 
   - [ ] make sure API keys are secure 
     - [x] spotify
     - [ ] google maps - need to secure from google cloud console 
   - [x] heroku for app files
   - [x] db cloud hosting 
   - [x] create separate dev/production environments
-- [ ] Create project README (4 hours)
-  - [ ] Application architecture diagram
+- [ ] Create project README 
+  - [x] Application architecture diagram
+  - [x] Project description text
   - [ ] Screencasts of app turned into GIFs
 - [ ] BUG: when use searches on about page, it doesn't redirect to main page (although the search is processed correctly). should be a straightforward redirect 
 
 ## Stretch Goals
 - [ ] fuzzy search results (if there's a good library it should be quick)
-- [ ] Data visualization page (whole day)
+- [ ] Data visualization page 
   - [ ] Use Google Data Studio API to create 4 basic maps and charts (or possibly other API). state-to-state comparison, regional comparison
   - [ ] **super strech** integrate additional third party APIs to get further data (billboard, etc.)
 - [ ] database stuff
@@ -67,8 +68,8 @@
   - [ ] better icon
   - [ ] customize colors/fonts 
   - [ ] make everything dark mode 
-- [ ] Add routes for infobox/modals (not sure if desirable) (2+ hours)
-- [ ] Add rapper functionality (whole day)
+- [ ] Add routes for infobox/modals (not sure if desirable) 
+- [ ] Add rapper functionality 
   - [ ] form where user can add rapper
     - [ ] MUST include coordinates via Google Maps API
   - [ ] backend updates data with new rapper (pending review and confirmation)
