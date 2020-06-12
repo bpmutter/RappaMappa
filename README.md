@@ -29,13 +29,13 @@
   - [x] when search result not in DB 
   - [x] when problem with Spotify API
   - [x] set up error handling in redux for extendibility 
-- [ ] Mobile optimization (half day)
+- [x] Mobile optimization (half day)
   - [x] map size
   - [x] search box
   - [x] nav bar 
   - [x] basic info popup - absolute location for the marker infobox when screensize is small?
   - [x] more info modal - just gotta make an X button
-  - [ ] about page needs to be non-mobile optimized...narrower box on big screens
+  - [x] about page needs to be non-mobile optimized...narrower box on big screens
 - [x] Backend (full day)
   - [x] add spotify auth to backend (NOTE: already half done in frontend, but migrate back there)
   - [x] create basic database to store rapper info - Mongo DB
@@ -52,6 +52,7 @@
   - [x] db cloud hosting 
   - [x] create separate dev/production environments
 - [ ] Create project README (4 hours)
+- [ ] BUG: when use searches on about page, it doesn't redirect to main page (although the search is processed correctly). should be a straightforward redirect 
 
 ## Stretch Goals
 - [ ] Data visualization page (whole day)

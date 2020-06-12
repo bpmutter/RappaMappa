@@ -6,15 +6,22 @@ import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import Footer from './Footer';
 
 
 const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    width: '100%', 
+    padding: '3%', 
+    display: 'flex', 
+    alignItems:'center', 
+    justifyContent:'center'
+  },
   paper: {
     marginTop: theme.spacing(8),
     maxWidth: 500,
-    margin: "0 auto",
+    padding: '10px 20px',
+    boxSizing: 'border-box',
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
@@ -38,31 +45,63 @@ export default function AboutPage() {
   const classes = useStyles();
 
   return (
-    <Paper component="main" maxWidth="m" style={{margin: "0 2rem", padding: "0 .75rem"}}>
-      <CssBaseline />
-      <div className={classes.paper}>
-          <Avatar className={classes.avatar} src="/img/rappa-mappa-logo.png">
-          </Avatar>
+    <div className={classes.wrapper}>
+      <Paper
+        component="main"
+        style={{ maxWidth: 550}}
+      >
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar
+            className={classes.avatar}
+            src="/img/rappa-mappa-logo.png"
+          ></Avatar>
           <Typography component="h1" variant="h5" className={classes.title}>
             About RappaMappa
           </Typography>
-          <Typography component="p" variant="body1" align="left" className={classes.p}>
-            The title pretty much says it all. RappaMappa is an interactive map of rappers. 
-            You can browse around the map, search for rappers, and see some details about the artists. 
+          <Typography
+            component="p"
+            variant="body1"
+            align="left"
+            className={classes.p}
+          >
+            The title pretty much says it all. RappaMappa is an interactive map
+            of rappers. You can browse around the map, search for rappers, and
+            see some details about the artists.
           </Typography>
-          <Typography component="p" variant="body1" align="left" className={classes.p}>
-            Also be sure to check out the 'More' button on the rappers to see additional info and some choice songs that you 
-            can listen to on Spotify.
+          <Typography
+            component="p"
+            variant="body1"
+            align="left"
+            className={classes.p}
+          >
+            Also be sure to check out the 'More' button on the rappers to see
+            additional info and some choice songs that you can listen to on
+            Spotify.
           </Typography>
-          <Typography component="p" variant="body1" align="left" className={classes.p}>
-            If you'd like to learn more about RappaMappa and how it was made, 
-            check out the <Link href="https://github.com/bpmutter/RappaMappa" target="_blank" rel="noopener">Github</Link>.
+          <Typography
+            component="p"
+            variant="body1"
+            align="left"
+            className={classes.p}
+          >
+            If you'd like to learn more about RappaMappa and how it was made,
+            check out the{" "}
+            <Link
+              href="https://github.com/bpmutter/RappaMappa"
+              target="_blank"
+              rel="noopener"
+            >
+              Github
+            </Link>
+            .
           </Typography>
-        {/* </section> */}
-      </div>
-      <Box mt={5}>
-        <Footer />
-      </Box>
-    </Paper>
+          {/* </section> */}
+        </div>
+        <Box mt={5}>
+          <Footer />
+        </Box>
+      </Paper>
+    </div>
   );
 }
