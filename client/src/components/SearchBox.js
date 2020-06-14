@@ -6,32 +6,30 @@ import {connect} from 'react-redux';
 import SearchIcon from "@material-ui/icons/Search";
 import { setSearchActive } from '../store/rappers';
 import { invalidSearch } from '../store/errorHandler';
-
-
+import IconButton from "@material-ui/core/IconButton";
 
 function SearchBox(props) {
     let rapperNames = [];
     if( props.rappers && props.rappers.length){
-        rapperNames = props.rappers.map(rapper=> rapper.fields.name)
+        rapperNames = props.rappers.map(rapper=> rapper.fields.name);
     }
 
-    const handleSearch = e => {
+    const handleSearch = async e => {
         e.preventDefault();
         const query = document.getElementsByName("search-query")[0].value;
-        if(rapperNames.includes(query)){
-            props.search(query);
-        } 
-        else{
-            props.invalidSearch();
-        }
+        const isValidSearch = await props.search(query);
+        if(!isValidSearch) props.invalidSearch();
+
     }
     return (
       <>
         {props.rappers && props.rappers.length ? (
-          <form onSubmit={handleSearch} style={{width: '100%'}}>
+          <>
+          <form onSubmit={handleSearch} style={{ width: "100%" }}>
             <Autocomplete
               id="combo-box"
               options={rapperNames}
+              freeSolo={true}
               autoComplete
               noOptionsText={"Please select one of the listed artists"}
               renderInput={(params) => (
@@ -44,7 +42,9 @@ function SearchBox(props) {
                 />
               )}
             />
+            {/* <IconButton style={{width: 50}}><SearchIcon/></IconButton> */}
           </form>
+          </>
         ) : null}
       </>
     );

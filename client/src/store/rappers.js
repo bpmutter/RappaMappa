@@ -1,21 +1,27 @@
+import Fuse from 'fuse.js';
 const backendUrl =
   process.env.REACT_APP_BACKEND_URL || "https://rappamappa.herokuapp.com";
-console.log("BACKEND URL", backendUrl)
 const LOAD_ALL = "rappamappa/rappers/LOAD_ALL";
 const SET_ACTIVE = "rappamappa/rappers/SET_ACTIVE";
 const SET_INACTIVE = "rappamappa/rappers/SET_INACTIVE";
 const SET_SEARCH_ACTIVE = "rappamappa/rappers/SET_SEARCH_ACTIVE";
 const LOAD_ADDITIONAL_INFO = "rappamappa/rappers/LOAD_ADDITIONAL_INFO";
 
+
 export const loadAll = rappers => ({type: LOAD_ALL, rappers});
 export const activate = rapper => ({type: SET_ACTIVE, rapper});
 export const deactivate = () => ({type: SET_INACTIVE, rapper: null });
 export const activateSearchResult = rapper => ({type: SET_SEARCH_ACTIVE, rapper});
-export const additionalInfo = rapper => ({type: LOAD_ADDITIONAL_INFO, rapper})
+export const additionalInfo = rapper => ({type: LOAD_ADDITIONAL_INFO, rapper});
 
+let fuseSearch; 
 export const getRappers = () => async dispatch =>{
     const data = await fetch(`${backendUrl}/artists/`);
     const {allArtists} = await data.json();
+    
+    //set search function when all artists received 
+    fuseSearch = new Fuse(allArtists, {keys: ['fields.name']});
+
     dispatch(loadAll(allArtists));
 }
 export const setActiveRapper = (recordid) => async (dispatch, getState) =>{
@@ -27,10 +33,18 @@ export const noActiveRapper = () => async dispatch =>{
     dispatch(deactivate());
 }
 
+
 export const setSearchActive = queryName => async (dispatch, getState) =>{
     const {rappers: {rappers} } = getState();
-    const rapper = rappers.find((rapper) => rapper.fields.name === queryName);
-    dispatch(activateSearchResult(rapper));
+    //const rapper = rappers.find((rapper) => rapper.fields.name === queryName);
+    debugger;
+    const results = fuseSearch.search(queryName);
+
+    if (results.length){
+        const rapper = results[0].item;
+        dispatch(activateSearchResult(rapper));
+        return true;
+    } return false;
 }
 
 export const loadAdditionalInfo = rapper => async dispatch => {
