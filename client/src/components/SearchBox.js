@@ -82,7 +82,7 @@ function SearchBox(props) {
                 />
               </form>
             </div>
-            <IconButton className={classes.searchIconButton}>
+            <IconButton className={classes.searchIconButton} onClick={handleSearch}>
               <SearchIcon style={{ display: "inline" }} />
             </IconButton>
           </>
