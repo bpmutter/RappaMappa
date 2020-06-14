@@ -38,7 +38,7 @@ function App(props) {
                     style={{
                       bottom: 0,
                       left: 0,
-                      top: 55,
+                      top: 60,
                       width: "100%",
                       position: "absolute",
                     }}

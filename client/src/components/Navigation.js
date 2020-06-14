@@ -14,7 +14,10 @@ import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    position: 'static',
+    zIndex: 10,
+    height: 65,
+    width: '100%',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -35,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    marginLeft: 0,
+    margin: '5px 0',
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
@@ -92,8 +95,8 @@ export default function SearchAppBar(props) {
   }
 
   return (
-    <div className={classes.root} style={{ zIndex: 10 }}>
-      <AppBar position="static">
+    <div className={classes.root}>
+      <AppBar style={{ height: 65 }}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -122,7 +125,9 @@ export default function SearchAppBar(props) {
             <MenuItem onClick={goToGithub}>Github</MenuItem>
           </Menu>
           <Typography className={classes.title} variant="h6" noWrap>
-              <Link to={'/'} style={{textDecoration: 'none', color:'inherit'}}>RappaMappa</Link>
+            <Link to={"/"} style={{ textDecoration: "none", color: "inherit" }}>
+              RappaMappa
+            </Link>
           </Typography>
 
           <div className={classes.search}>
