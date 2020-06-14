@@ -3,21 +3,21 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { fade, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Fade from "@material-ui/core/Fade";
 import SearchBox from "./SearchBox";
 import {Link} from 'react-router-dom';
-
+import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: 'static',
+    position: "static",
     zIndex: 10,
     height: 65,
-    width: '100%',
+    width: "100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -30,49 +30,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   //hic sunt dracones - git commit before any edits to search
-  //very finnicky 
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    margin: '5px 0',
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: 300,
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "20",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-  clearStyles: {
-    color: "inherit",
-    textDecoration: "inherit",
-  },
+  //very finnicky
+  
 }));
 
 export default function SearchAppBar(props) {
@@ -129,12 +88,10 @@ export default function SearchAppBar(props) {
               RappaMappa
             </Link>
           </Typography>
-
-          <div className={classes.search}>
-            <SearchBox />
-          </div>
+          <SearchBox />
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
