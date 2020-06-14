@@ -15,13 +15,19 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 
+const mediaBreakpoint = 400;
 const useStyles = makeStyles(theme =>({
   root: {
-    [theme.breakpoints.up("sm")]:{width: 350,},
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.up(mediaBreakpoint)]:{
+      width: 350,
+      borderRadius: '0.25rem 2.5rem 2.5rem 2.5rem',
+      padding: '.5rem',
+    },
+    [theme.breakpoints.down(mediaBreakpoint)]: {
       width: 300,
-      position: 'fixed',
-      bottom: 0,
+      height: 300,
+      position: 'absolute',
+      bottom: 15,
       left: 15
     },
   },
@@ -96,7 +102,7 @@ function RapperCard(props) {
 const RapperInfoBox = (props) => {
 
     const theme = useTheme();
-    const largeScreen = useMediaQuery(theme.breakpoints.up("sm"));
+    const largeScreen = useMediaQuery(theme.breakpoints.up(mediaBreakpoint));
 
     return ( <>
       {largeScreen ? 
