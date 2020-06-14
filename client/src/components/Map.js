@@ -6,12 +6,6 @@ import { connect } from "react-redux";
 import  {getRappers} from '../store/rappers';
 import RapperInfoBox from './RapperInfoBox';
 const Map = withScriptjs(withGoogleMap((props) => {
-    //get rappers on load
-    // useEffect(()=>{
-    //     props.getRappers()
-            
-    // }, []);
-    console.log(props.rappers)
     return ( 
         <GoogleMap
             defaultZoom={11}

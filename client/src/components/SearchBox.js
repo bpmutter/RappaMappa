@@ -8,6 +8,7 @@ import { setSearchActive } from '../store/rappers';
 import { invalidSearch, clearErrorMessages } from '../store/errorHandler';
 import { makeStyles, fade } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
+import { Redirect, useLocation } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
       width: 300,
     },
   },
-  searchInput: {
-    paddingLeft: 5,
-  },
+  // searchInput: {
+  //   paddingLeft: 5,
+  // },
   searchIconButton: {
     display: "inline-block",
     width: 50,
@@ -38,29 +39,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 function SearchBox(props) {
     const classes = useStyles();
+    const location = useLocation();
     let rapperNames = [];
     if( props.rappers && props.rappers.length){
         rapperNames = props.rappers.map(rapper=> rapper.fields.name);
     }
-
     const handleSearch = async e => {
         e.preventDefault();
         const query = document.getElementsByName("search-query")[0].value;
         const isValidSearch = await props.search(query);
         if(!isValidSearch) props.invalidSearch();
-
     }
+    
     return (
       <>
-        {props.rappers && props.rappers.length ? (
+        {props.rappers && props.rappers.length  && location.pathname === "/" ? (
           <>
             <div className={classes.search}>
               <form onSubmit={handleSearch} style={{ width: "100%" }}>
                 <Autocomplete
                   id="combo-box"
                   options={rapperNames}
-                  freeSolo={true}
-                  autoComplete
+                  // freeSolo={true}
+                  autoComplete={true}
                   noOptionsText={"Please select one of the listed artists"}
                   style={{ paddingLeft: 10, paddingBottom: 5 }}
                   renderInput={(params) => (
@@ -72,17 +73,20 @@ function SearchBox(props) {
                       style={{
                         color: "white",
                       }}
-                      InputProps={
-                        {className: classes.searchInput,
-                        disableUnderline: true  
-                        }
-                      }
+                      InputProps={{
+                        ...params.InputProps,
+                        className: classes.searchInput,
+                        disableUnderline: true,
+                      }}
                     />
                   )}
                 />
               </form>
             </div>
-            <IconButton className={classes.searchIconButton} onClick={handleSearch}>
+            <IconButton
+              className={classes.searchIconButton}
+              onClick={handleSearch}
+            >
               <SearchIcon style={{ display: "inline" }} />
             </IconButton>
           </>

@@ -52,7 +52,6 @@ export default function SearchAppBar(props) {
     window.open("https://github.com/bpmutter/RappaMappa", "_blank");
     handleClose();
   }
-
   return (
     <div className={classes.root}>
       <AppBar style={{ height: 65 }}>
