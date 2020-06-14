@@ -99,6 +99,9 @@ The Google Maps Javascript API is absolutely essential to this project. Basicall
 
 The API has a truly robust feature set, of which this application just scratched the surface. However, with its scope also lie many bugs and other issues. Of particular pain throughout the development, were the Pins and Infobox components. For instance, to render the artist information on mobile devices, it required forgoing the Infobox component associated with the Pin of the large-screen version in favor of a different component positioned to the bottom of the screen. This change was necessary because the Infobox component has to have static position, while the mobile styling required positioning relative to the device window for easy use on smaller screen size. 
 
+#### Fuse.js
+To enable fuzzy searches (where match isn't exact), RappaMappa uses the Fuse.js search library to load the closest result to the query if there is a reasonably close result. If nothing remotely similar to the query exists in the RappaMappa database, the application presents the user with a message saying there were no results. 
+
 ## Backend Overview
 RappaMappa uses an Express server with MongoDB as the database. Compared to the frontend, the backend of RappaMappa is fairly simple, with the server sending the front end to the client, receiving requests, and sending data to the frontend. Below are the backend technologies used with some notes regarding their implementation. 
 
