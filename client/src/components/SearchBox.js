@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 function SearchBox(props) {
     const classes = useStyles();
-    const location = useLocation();
+    const location = useLocation(); //gets browser location to only render search box on map
     let rapperNames = [];
     if( props.rappers && props.rappers.length){
         rapperNames = props.rappers.map(rapper=> rapper.fields.name);
