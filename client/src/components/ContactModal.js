@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -64,7 +64,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function ContactModal() {
 
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+
+  //precache the smiling bitmoji
+  useEffect(()=>{
+      console.log('bitmoji smile::',bitmojiSmile)
+    const img = new Image();
+    img.src = bitmojiSmile.fileName;
+  },[])
 
   const handleClickOpen = () => {
     setOpen(true);
