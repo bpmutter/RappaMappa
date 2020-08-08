@@ -68,7 +68,6 @@ export default function ContactModal() {
 
   //precache the smiling bitmoji
   useEffect(()=>{
-      console.log('bitmoji smile::',bitmojiSmile)
     const img = new Image();
     img.src = bitmojiSmile.fileName;
   },[])
