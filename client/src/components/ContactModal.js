@@ -17,13 +17,14 @@ import Link from "@material-ui/core/Link";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import TwitterIcon from "@material-ui/icons/Twitter";
+import bitmojiSmile from '../assets/img/bitmoji-smile.png';
 
 const useStyles = makeStyles((theme) => ({
   contentWrapper: {
     width: 450,
     [theme.breakpoints.down("xs")]: {
-        width: '90%',
-    }
+      width: "90%",
+    },
   },
   bitmojiButton: {
     backgroundImage: `url(${process.env.PUBLIC_URL}/img/bitmoji-neutral.png)`,
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     left: 15,
     zIndex: 25,
     "&:hover": {
-      backgroundImage: `url(${process.env.PUBLIC_URL}/img/bitmoji-smile.png)`,
+      backgroundImage: `url(${bitmojiSmile})`,
     },
   },
   imgWrapper: {
@@ -45,14 +46,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     margin: `${theme.spacing(2)} 0`,
-    width: '100%'
+    width: "100%",
   },
   img: {
     maxWidth: 160,
   },
   contactInfo: {
-      marginLeft: theme.spacing(10)
-  }
+    marginLeft: theme.spacing(10),
+  },
 }));
 
 
