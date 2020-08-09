@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "start:dev": "nodemon server.js"
+    "start:dev": "nodemon server.js",
+    "deploy": " npm run build --prefix client/ && git add . && git commit -m\"create production build\""
   },
   "repository": {
     "type": "git",
