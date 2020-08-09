@@ -39,16 +39,15 @@ export default function SearchAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const preventDefault = (event) => event.preventDefault();
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
   const goToGithub = (e) => {
-    preventDefault(e);
+    e.preventDefault();
     window.open("https://github.com/bpmutter/RappaMappa", "_blank");
     handleClose();
   }

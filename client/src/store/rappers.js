@@ -36,8 +36,6 @@ export const noActiveRapper = () => async dispatch =>{
 
 export const setSearchActive = queryName => async (dispatch, getState) =>{
     const {rappers: {rappers} } = getState();
-    //const rapper = rappers.find((rapper) => rapper.fields.name === queryName);
-    debugger;
     const results = fuseSearch.search(queryName);
 
     if (results.length){

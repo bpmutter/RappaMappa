@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     margin: "7px 0",
+    padding: '3px 0',
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
@@ -50,6 +51,13 @@ function SearchBox(props) {
         const isValidSearch = await props.search(query);
         if(!isValidSearch) props.invalidSearch();
     }
+
+    const handleAutoCompleteSearch = async e => {
+      e.preventDefault();
+      const query = e.target.value;
+      const isValidSearch = await props.search(query);
+      if(!isValidSearch) props.invalidSearch();
+    }
     
     return (
       <>
@@ -63,7 +71,8 @@ function SearchBox(props) {
                   // freeSolo={true}
                   autoComplete={true}
                   noOptionsText={"Please select one of the listed artists"}
-                  style={{ paddingLeft: 10, paddingBottom: 5 }}
+                  style={{ paddingLeft: 10, }}
+                  onChange={handleAutoCompleteSearch}
                   renderInput={(params) => (
                     <TextField
                       {...params}
