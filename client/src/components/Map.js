@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import  {getRappers} from '../store/rappers';
 import RapperInfoBox from './RapperInfoBox';
 import ContactModal from './ContactModal';
+import AboutModal from './AboutModal';
 const Map = withScriptjs(withGoogleMap((props) => {
     return ( 
         <GoogleMap
@@ -33,6 +34,7 @@ const Map = withScriptjs(withGoogleMap((props) => {
                 <RapperInfoBox {...props.activeRapper} />
             </Marker>
             )}
+            <AboutModal/>
             <ContactModal/>
         </GoogleMap>
     

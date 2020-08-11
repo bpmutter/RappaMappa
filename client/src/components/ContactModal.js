@@ -1,9 +1,6 @@
-import React, {useEffect, useState} from "react";
-import Button from "@material-ui/core/Button";
+import React, {useState} from "react";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import {makeStyles} from '@material-ui/core';
@@ -23,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   contentWrapper: {
     width: 450,
     [theme.breakpoints.down("xs")]: {
-      width: "90%",
+      width: "92%",
     },
   },
   bitmojiButton: {
@@ -38,15 +35,15 @@ const useStyles = makeStyles((theme) => ({
     left: 15,
     zIndex: 25,
     "&:hover": {
-      backgroundImage: `url(${bitmojiSmile})`,
+      backgroundImage: `url(${process.env.PUBLIC_URL}/img/bitmoji-smile.png)`,
     },
   },
-  precache: { 
-    position: 'absolute',
+  precache: {
+    position: "absolute",
     bottom: 0,
-    left:0,
-    opacity: .1,
-    width: 2
+    left: 0,
+    opacity: 0.1,
+    width: 2,
   },
   imgWrapper: {
     display: "flex",
@@ -60,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
   },
   contactInfo: {
     marginLeft: theme.spacing(10),
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: theme.spacing(0.5),
+    },
   },
 }));
 
@@ -84,7 +84,11 @@ export default function ContactModal() {
   return (
     <div className={classes.contentWrapper}>
       <div className={classes.bitmojiButton} onClick={handleClickOpen}></div>
-      <img className={classes.precache} src={bitmojiSmile} alt="smiling ben precache img"/>
+      <img
+        className={classes.precache}
+        src="/img/bitmoji-smile.png"
+        alt="smiling ben precache img"
+      />
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -172,19 +176,6 @@ export default function ContactModal() {
               </ListItem>
             </List>
           </DialogContent>
-          {/* <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Feel free to 
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Disagree
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Agree
-          </Button>
-        </DialogActions> */}
         </div>
       </Dialog>
     </div>

@@ -16,19 +16,21 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 
 const mediaBreakpoint = 400;
-const useStyles = makeStyles(theme =>({
+const useStyles = makeStyles((theme) => ({
   root: {
-    [theme.breakpoints.up(mediaBreakpoint)]:{
+    // position: "relative",
+    // zIndex: 10,
+    [theme.breakpoints.up(mediaBreakpoint)]: {
       width: 350,
-      borderRadius: '0.25rem 2.5rem 2.5rem 2.5rem',
-      padding: '.5rem',
+      borderRadius: "0.25rem 2.5rem 2.5rem 2.5rem",
+      padding: ".5rem",
     },
     [theme.breakpoints.down(mediaBreakpoint)]: {
       width: 300,
       height: 300,
-      position: 'absolute',
+      position: "absolute",
       bottom: 15,
-      left: 15
+      left: 15,
     },
   },
   bullet: {
