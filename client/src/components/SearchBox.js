@@ -54,7 +54,11 @@ function SearchBox(props) {
 
     const handleAutoCompleteSearch = async e => {
       e.preventDefault();
-      const query = e.target.value;
+
+      //added the OR statement b.c the event listener doesn't pick up on the .value onClick
+      // it does however pickup the .innerHTML, which contains the same value 
+      let query = e.target.value || e.target.innerHTML;
+
       const isValidSearch = await props.search(query);
       if(!isValidSearch) props.invalidSearch();
     }
@@ -64,7 +68,7 @@ function SearchBox(props) {
         {props.rappers && props.rappers.length  && location.pathname === "/" ? (
           <>
             <div className={classes.search}>
-              <form onSubmit={handleSearch} style={{ width: "100%" }}>
+              <form onSubmit={handleSearch} style={{ width: "100%" }} noValidate>
                 <Autocomplete
                   id="combo-box"
                   options={rapperNames}

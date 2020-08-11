@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundImage: `url(${bitmojiSmile})`,
     },
   },
+  precache: { 
+    
+  },
   imgWrapper: {
     display: "flex",
     justifyContent: "center",
@@ -83,6 +86,7 @@ export default function ContactModal() {
   return (
     <div className={classes.contentWrapper}>
       <div className={classes.bitmojiButton} onClick={handleClickOpen}></div>
+      <img className={classes.precache} src={bitmojiSmile} alt="smiling ben precache img"/>
       <Dialog
         open={open}
         TransitionComponent={Transition}
