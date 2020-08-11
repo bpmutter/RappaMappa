@@ -42,7 +42,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   precache: { 
-    
+    position: 'absolute',
+    bottom: 0,
+    left:0,
+    opacity: .1,
+    width: 2
   },
   imgWrapper: {
     display: "flex",
@@ -68,12 +72,6 @@ export default function ContactModal() {
 
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-
-  //precache the smiling bitmoji
-  useEffect(()=>{
-    const img = new Image();
-    img.src = bitmojiSmile.fileName;
-  },[])
 
   const handleClickOpen = () => {
     setOpen(true);
